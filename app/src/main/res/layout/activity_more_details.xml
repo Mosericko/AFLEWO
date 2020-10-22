@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c1"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".loginregistration.MoreDetails">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="Choose your Gender"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/genderChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="80dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Male"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="CHOOSE USER CATEGORY"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/userCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="80dp"
+        android:orientation="vertical">
+
+
+
+        <RadioButton
+            android:id="@+id/member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Member"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
+
+
+        <RadioButton
+            android:id="@+id/eventManager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Events Manager"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/financeManager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finance Manager"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/marketing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marketing Coordinator"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/fundraiser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fundraising Coordinator"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/registerUser"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="start"
+        android:layout_margin="20dp"
+        android:background="@drawable/sign_btn"
+        android:text="Create account"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="already registered?"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/muli_extrabold"/>
+
+        <TextView
+            android:id="@+id/user_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:text="Login Here"
+            android:textStyle="bold"
+            android:textColor="@color/MetallicGold" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

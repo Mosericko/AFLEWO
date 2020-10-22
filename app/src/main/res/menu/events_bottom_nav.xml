@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashBoard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_gallery" />
+    <item
+        android:id="@+id/addEvents"
+        android:title="AddEvents"
+        android:icon="@drawable/ic_add_circle"/>
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_account_circle"/>
+
+
+
+</menu>
