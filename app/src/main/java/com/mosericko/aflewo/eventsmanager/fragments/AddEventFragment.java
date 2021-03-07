@@ -1,6 +1,7 @@
 package com.mosericko.aflewo.eventsmanager.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -52,8 +53,6 @@ import java.util.Objects;
 import static android.app.Activity.RESULT_OK;
 
 public class AddEventFragment extends Fragment {
-    //variable declaration
-    private int galleryReqCode = 1, cameraReqCode = 2;
     TimePickerDialog startEvent, endEvent;
     DatePickerDialog setDate;
     ImageView selectPhoto;
@@ -64,6 +63,9 @@ public class AddEventFragment extends Fragment {
     ByteArrayOutputStream byteArrayOutputStream;
     byte[] byteArray;
     String imageString;
+    //variable declaration
+    private int galleryReqCode = 1, cameraReqCode = 2;
+    private Uri fileTrace;
 
     @Nullable
     @Override
@@ -85,6 +87,29 @@ public class AddEventFragment extends Fragment {
         eventTheme = view.findViewById(R.id.eventTheme);
         startTime = view.findViewById(R.id.startTime);
         endTime = view.findViewById(R.id.endTime);
+
+        editTextDialog();
+
+
+        byteArrayOutputStream = new ByteArrayOutputStream();
+
+        selectPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOptionsDialog();
+            }
+        });
+
+        saveEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadEvent();
+
+            }
+        });
+    }
+
+    private void editTextDialog() {
 
         //helps to prevent the editText from calling the keyboard -inputType=null
         startTime.setInputType(InputType.TYPE_NULL);
@@ -153,29 +178,14 @@ public class AddEventFragment extends Fragment {
 
         });
 
-        byteArrayOutputStream = new ByteArrayOutputStream();
 
-        selectPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showOptionsDialog();
-            }
-        });
-
-        saveEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadEvent();
-
-            }
-        });
     }
 
     private void nextFrag() {
         //calling the eventList Fragment
-        EventListFragment eventListFragment=new EventListFragment();
-        FragmentTransaction fragmentTransaction= Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container,eventListFragment);
+        EventListFragment eventListFragment = new EventListFragment();
+        FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, eventListFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -223,6 +233,8 @@ public class AddEventFragment extends Fragment {
 
         if (requestCode == galleryReqCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filepath = data.getData();
+            fileTrace = data.getData();
+
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), filepath);
@@ -248,11 +260,6 @@ public class AddEventFragment extends Fragment {
     }
 
     private void uploadEvent() {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        byteArray = byteArrayOutputStream.toByteArray();
-        imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-
         final String eveName = eventName.getText().toString().trim();
         final String eveVenue = eventVenue.getText().toString().trim();
         final String eveTheme = eventTheme.getText().toString().trim();
@@ -260,12 +267,18 @@ public class AddEventFragment extends Fragment {
         final String eveEndTime = endTime.getText().toString().trim();
         final String eveDate = eventDate.getText().toString().trim();
 
-        //EditText Validations
 
-        if (imageString.length()==0){
-            Toast.makeText(context, "Upload Image", Toast.LENGTH_SHORT).show();
+        if (fileTrace == null) {
+            Toast.makeText(context, "Select a Photo!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+        byteArray = byteArrayOutputStream.toByteArray();
+        imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+
+        //EditText Validations
         if (TextUtils.isEmpty(eveName)) {
             eventName.setError("Please Enter Event name!");
             eventName.requestFocus();
@@ -312,6 +325,7 @@ public class AddEventFragment extends Fragment {
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     class UploadEventsAsync extends AsyncTask<Void, Void, String> {
 
         private String imageStr, eName, eVenue, eTheme, eStartT, eEndT, eDate;
@@ -368,6 +382,5 @@ public class AddEventFragment extends Fragment {
             }
         }
     }
-
 
 }

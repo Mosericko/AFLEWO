@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.mosericko.aflewo.eventsmanager.Events;
 import com.mosericko.aflewo.member.User;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
@@ -18,6 +19,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     //Database tables
     private static final String USER_TABLE = "userProfile";
+    private static final String EVENTS_TABLE = "aflewoEvents";
 
 
     //table fields for userProfile
@@ -29,7 +31,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     private static final String PHONE_NUMBER = "phoneNumber";
     private static final String USER_TYPE = "userType";
 
-
+    //table fields for events
+    private static final String EVENT_ID = "id";
+    private static final String EVENT_NAME = "eventName";
+    private static final String EVENT_VENUE = "eventVenue";
+    private static final String EVENT_THEME = "eventTheme";
+    private static final String START_TIME = "startTime";
+    private static final String END_TIME = "endTime";
+    private static final String EVENT_DATE = "eventDate";
 
 
     public DataBaseHandler(@Nullable Context context) {
@@ -52,18 +61,29 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         db.execSQL(userProfileSQl);
 
+        String PRIMARY_EVENT_ID = "primary_id";
+        String eventSQL = "CREATE TABLE " + EVENTS_TABLE + "(" + PRIMARY_EVENT_ID + " INTEGER PRIMARY KEY, " +
+                EVENT_ID + " INTEGER, " +
+                EVENT_NAME + " TEXT, " +
+                EVENT_VENUE + " TEXT, " +
+                EVENT_THEME + " VARCHAR, " +
+                START_TIME + " TIME, " +
+                END_TIME + " TIME, " +
+                EVENT_DATE + " DATE " + ");";
+
+        db.execSQL(eventSQL);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //if the tables already exist
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
-
+        db.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
         // Create the table after dropping the existing ones
         onCreate(db);
 
     }
-
 
 
     //add user to database
@@ -114,6 +134,35 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
 
     }
+
+    public void addEvents(Events events) {
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(EVENT_ID, events.getId());
+        cv.put(EVENT_NAME, events.getEventName());
+        cv.put(EVENT_VENUE, events.getEventVenue());
+        cv.put(EVENT_THEME, events.getEventTheme());
+        cv.put(START_TIME, events.getStartTime());
+        cv.put(END_TIME, events.getEndTime());
+        cv.put(EVENT_DATE, events.getEventDate());
+
+        myDb.insert(EVENTS_TABLE, null, cv);
+        myDb.close();
+    }
+
+    public void updateProfile(User user, int id) {
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues updateValue = new ContentValues();
+
+        updateValue.put(FIRST_NAME, user.getFirstname());
+        updateValue.put(LAST_NAME, user.getLastname());
+        updateValue.put(GENDER, user.getGender());
+
+        myDb.update(USER_TABLE, updateValue, "id = ?", new String[]{String.valueOf(id)});
+
+    }
+
 
 }
 

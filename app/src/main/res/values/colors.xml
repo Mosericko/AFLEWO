@@ -9,9 +9,13 @@
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="Silver">#c0c0c0</color>
-    <color name="c3">#353e47 </color>
+    <color name="c3">#353e47</color>
     <color name="saddlebrown">#8B4513</color>
     <color name="Splash">#353a40</color>
     <color name="shadegrey">#F5F5F5</color>
     <color name="AliExpress">#F79917</color>
+    <color name="cyana200">#18FFFF</color>
+    <color name="cyana400">#00E5FF</color>
+    <color name="red500">#F44336</color>
+    <color name="icongreen">#31AF91</color>
 </resources>

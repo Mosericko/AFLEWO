@@ -2,7 +2,6 @@ package com.mosericko.aflewo.loginregistration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,18 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.mosericko.aflewo.customer.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
 import com.mosericko.aflewo.fundraiser.Fundraiser;
-import com.mosericko.aflewo.marketing.Marketing;
 import com.mosericko.aflewo.member.MainActivity;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
 import com.mosericko.aflewo.member.User;
 import com.mosericko.aflewo.database.DataBaseHandler;
-import com.mosericko.aflewo.member.UserProfile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +102,7 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
-    @SuppressLint("StaticFieldLeak")
+
     class UserSignIn extends AsyncTask<Void, Void, String> {
 
         String email, password;
@@ -177,7 +175,7 @@ public class UserLogin extends AppCompatActivity {
                             finish();
                             break;
                         case "4":
-                            startActivity(new Intent(UserLogin.this, Marketing.class));
+                            startActivity(new Intent(UserLogin.this, Index.class));
                             finish();
                             break;
                         case "5":

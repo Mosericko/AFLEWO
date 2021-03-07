@@ -11,12 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".member.UserProfile"></activity>
-        <activity android:name=".marketing.Marketing" />
+        <activity android:name=".customer.Index"
+            android:theme="@style/GeneralTheme"/>
+        <activity
+            android:name=".eventsmanager.EditEvent"
+            android:theme="@style/GeneralTheme" />
+        <activity android:name=".onboardingscreen.OnBoardingScreen">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".member.UserProfile"
+            android:theme="@style/ProfileActivity" />
+        <activity
+            android:name=".member.EditProfile"
+            android:theme="@style/UserRegistration" />
+        <activity android:name=".customer.Marketing" />
         <activity android:name=".fundraiser.Fundraiser" />
         <activity android:name=".financemanager.FinanceManager" />
-        <activity android:name=".eventsmanager.EventsManager"
-            android:theme="@style/UserRegistration"/>
+        <activity
+            android:name=".eventsmanager.EventsManager"
+            android:theme="@style/UserRegistration" />
         <activity android:name=".loginregistration.MoreDetails" />
         <activity android:name=".loginregistration.UserLogin" />
         <activity
@@ -29,7 +50,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".member.MainActivity" />
+        <activity
+            android:name=".member.MainActivity"
+            android:theme="@style/MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

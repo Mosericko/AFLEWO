@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.mosericko.aflewo.R;
@@ -17,17 +20,55 @@ import com.mosericko.aflewo.loginregistration.SignActivityPrompt;
 import java.util.Objects;
 
 public class UserProfile extends AppCompatActivity {
-    EditText fName, lName, email, phone,gender;
+    TextView email, phone, gender;
+    TextView firstName, lastName, firstInitial, secondInitial, backText, editText;
+    ImageView editProfile, backArrow;
+    LinearLayout logOut;
+    String nameOne, nameTwo;
     private int id = PrefManager.getInstance(this).UserID();
-    Button logOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        logOut=findViewById(R.id.logOut);
+        logOut = findViewById(R.id.logOut);
+        editProfile = findViewById(R.id.editProfile);
+        backArrow = findViewById(R.id.backArrow);
+        backText = findViewById(R.id.backText);
+        editText = findViewById(R.id.editText);
 
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfile.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+        });
+        backText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfile.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserProfile.this, EditProfile.class));
+            }
+        });
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserProfile.this, EditProfile.class));
+            }
+        });
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,14 +88,22 @@ public class UserProfile extends AppCompatActivity {
         DataBaseHandler myDb = new DataBaseHandler(this);
         User user = myDb.getUser(id);
         //User user=PrefManager.getUser();
+        nameOne = String.valueOf(user.getFirstname());
+        nameTwo = String.valueOf(user.getLastname());
 
-        fName = findViewById(R.id.firstName);
-        fName.setText(user.getFirstname());
+        firstInitial = findViewById(R.id.firstInitial);
+        firstInitial.setText(String.valueOf(nameOne.charAt(0)));
 
-        lName = findViewById(R.id.lastName);
-        lName.setText(user.getLastname());
+        secondInitial = findViewById(R.id.secondInitial);
+        secondInitial.setText(String.valueOf(nameTwo.charAt(0)));
 
-        gender=findViewById(R.id.userGender);
+        firstName = findViewById(R.id.first_name);
+        firstName.setText(user.getFirstname());
+
+        lastName = findViewById(R.id.last_name);
+        lastName.setText(user.getLastname());
+
+        gender = findViewById(R.id.userGender);
         gender.setText(user.getGender());
 
         email = findViewById(R.id.profilemail);

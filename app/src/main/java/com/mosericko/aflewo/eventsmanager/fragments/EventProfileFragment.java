@@ -22,29 +22,29 @@ import com.mosericko.aflewo.member.UserProfile;
 
 public class EventProfileFragment extends Fragment {
 
-    EditText firstName,lastName,gender,emailAddress,phoneNumber;
+    EditText firstName, lastName, gender, emailAddress, phoneNumber;
     Button logOut;
     Context context;
-    private DataBaseHandler myDb;
     int id;
+    private DataBaseHandler myDb;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile_event,container,false);
+        return inflater.inflate(R.layout.fragment_profile_event, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.context=getContext();
+        this.context = getContext();
 
-        firstName=view.findViewById(R.id.firstJina);
-        lastName=view.findViewById(R.id.lastJina);
-        gender=view.findViewById(R.id.genderPick);
-        emailAddress=view.findViewById(R.id.profileEmailEvents);
-        phoneNumber=view.findViewById(R.id.phoneContact);
-        logOut=view.findViewById(R.id.signOut);
+        firstName = view.findViewById(R.id.firstJina);
+        lastName = view.findViewById(R.id.lastJina);
+        gender = view.findViewById(R.id.genderPick);
+        emailAddress = view.findViewById(R.id.profileEmailEvents);
+        phoneNumber = view.findViewById(R.id.phoneContact);
+        logOut = view.findViewById(R.id.signOut);
 
         loadEventMangerProfile();
 
@@ -60,9 +60,9 @@ public class EventProfileFragment extends Fragment {
     }
 
     private void loadEventMangerProfile() {
-        id=PrefManager.getInstance(context).UserID();
-        myDb=new DataBaseHandler(context);
-        User user=myDb.getUser(id);
+        id = PrefManager.getInstance(context).UserID();
+        myDb = new DataBaseHandler(context);
+        User user = myDb.getUser(id);
 
         firstName.setText(user.getFirstname());
         lastName.setText(user.getLastname());

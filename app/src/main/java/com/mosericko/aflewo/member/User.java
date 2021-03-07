@@ -20,6 +20,17 @@ public class User {
         this.usertype = usertype;
     }
 
+    public User(String firstname, String lastname, String gender/*, String email, String phonenumber*/) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        /*this.email = email;
+        this.phonenumber = phonenumber;*/
+    }
+
+    public User() {
+    }
+
     public int getId() {
         return id;
     }

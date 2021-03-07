@@ -14,6 +14,7 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.eventsmanager.fragments.AddEventFragment;
+import com.mosericko.aflewo.eventsmanager.fragments.ArchivedEvents;
 import com.mosericko.aflewo.eventsmanager.fragments.EventListFragment;
 import com.mosericko.aflewo.eventsmanager.fragments.EventProfileFragment;
 
@@ -55,6 +56,10 @@ public class EventsManager extends AppCompatActivity {
                             selectedFragment = new EventProfileFragment();
                             break;
 
+                        case R.id.archivedEvent:
+                            selectedFragment=new ArchivedEvents();
+                            break;
+
                     }
 
                     assert selectedFragment != null;
@@ -62,5 +67,20 @@ public class EventsManager extends AppCompatActivity {
                     return true;
                 }
             };
+
+    /*@RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        setContentView(R.layout.activity_events_manager);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventListFragment()).commit();
+
+
+    }*/
 }
 

@@ -25,9 +25,9 @@ import java.util.HashMap;
 
 public class MoreDetails extends AppCompatActivity {
 
-    String firstName,lastName,email,password,phoneNumber;
+    String firstName, lastName, email, password, phoneNumber;
     Button createAccount;
-    RadioGroup gender,userType;
+    RadioGroup gender, userType;
     TextView user_login;
 
 
@@ -36,10 +36,10 @@ public class MoreDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_details);
 
-        user_login=findViewById(R.id.user_login);
-        createAccount=findViewById(R.id.registerUser);
-        gender=findViewById(R.id.genderChoice);
-        userType=findViewById(R.id.userCategory);
+        user_login = findViewById(R.id.user_login);
+        createAccount = findViewById(R.id.registerUser);
+        gender = findViewById(R.id.genderChoice);
+        userType = findViewById(R.id.userCategory);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,54 +51,61 @@ public class MoreDetails extends AppCompatActivity {
         user_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MoreDetails.this,UserLogin.class));
+                startActivity(new Intent(MoreDetails.this, UserLogin.class));
             }
         });
 
     }
 
     private void registerUser() {
+        String typeUser;
+        Intent receiveIntentData = getIntent();
+        firstName = receiveIntentData.getStringExtra("firstName");
+        lastName = receiveIntentData.getStringExtra("lastName");
+        email = receiveIntentData.getStringExtra("email");
+        password = receiveIntentData.getStringExtra("password");
+        phoneNumber = receiveIntentData.getStringExtra("phoneNumber");
 
-        Intent receiveIntentData=getIntent();
-        firstName=receiveIntentData.getStringExtra("firstName");
-        lastName=receiveIntentData.getStringExtra("lastName");
-        email=receiveIntentData.getStringExtra("email");
-        password=receiveIntentData.getStringExtra("password");
-        phoneNumber=receiveIntentData.getStringExtra("phoneNumber");
+        final String genderRadio = ((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText().toString().trim();
+        final String userCategory = ((RadioButton) findViewById(userType.getCheckedRadioButtonId())).getText().toString().trim();
 
-        final String genderRadio=((RadioButton) findViewById(gender.getCheckedRadioButtonId())).getText().toString().trim();
-        final String userCategory=((RadioButton) findViewById(userType.getCheckedRadioButtonId())).getText().toString().trim();
-        String typeUser=null;
-
-        switch (userCategory){
+        typeUser = null;
+        switch (userCategory) {
 
             case "Member":
-                typeUser="1";
+                typeUser = "1";
                 break;
 
             case "Events Manager":
-                typeUser="2";
+                typeUser = "2";
                 break;
             case "Finance Manager":
-                typeUser="3";
+                typeUser = "3";
                 break;
             case "Marketing Coordinator":
-                typeUser="4";
+                typeUser = "4";
                 break;
             case "Fundraising Coordinator":
-                typeUser="5";
+                typeUser = "5";
                 break;
 
 
         }
 
-        RegisterUser registerUser = new RegisterUser(firstName, lastName,email,password,phoneNumber,genderRadio,typeUser);
+        RegisterUser registerUser = new RegisterUser(firstName, lastName, email, password, phoneNumber, genderRadio, typeUser);
         registerUser.execute();
     }
-    @SuppressLint("StaticFieldLeak")
-    private class RegisterUser extends AsyncTask<Void,Void,String> {
 
-        private String firstName,lastName,email,password,phoneNumber,gender, typeUser;
+    @SuppressLint("StaticFieldLeak")
+    private class RegisterUser extends AsyncTask<Void, Void, String> {
+
+        private final String firstName;
+        private final String lastName;
+        private final String email;
+        private final String password;
+        private final String phoneNumber;
+        private final String gender;
+        private final String typeUser;
 
         public RegisterUser(String firstName, String lastName, String email, String password, String phoneNumber, String gender, String typeUser) {
             this.firstName = firstName;
@@ -112,7 +119,7 @@ public class MoreDetails extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            RequestHandler requestHandler=new RequestHandler();
+            RequestHandler requestHandler = new RequestHandler();
 
             HashMap<String, String> params = new HashMap<>();
             params.put("firstname", firstName);
@@ -130,7 +137,7 @@ public class MoreDetails extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.i("SignUp","sign up : "+s);
+            Log.i("SignUp", "sign up : " + s);
 
             try {
 

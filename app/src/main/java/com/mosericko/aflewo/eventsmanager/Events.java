@@ -1,12 +1,19 @@
 package com.mosericko.aflewo.eventsmanager;
 
 public class Events {
-    int id;
-    String eventImage,eventName,eventVenue,eventTheme,eventDate,startTime,endTime;
+    String id;
+    String eventImage, eventName, eventVenue, eventTheme, eventDate, startTime, endTime;
 
-    public Events(int id,String eventImage, String eventName, String eventVenue, String eventTheme, String eventDate, String startTime, String endTime) {
+    public Events() {
+    }
+
+    public Events(String id) {
         this.id = id;
-        this.eventImage=eventImage;
+    }
+
+    public Events(String id, String eventImage, String eventName, String eventVenue, String eventTheme, String eventDate, String startTime, String endTime) {
+        this.id = id;
+        this.eventImage = eventImage;
         this.eventName = eventName;
         this.eventVenue = eventVenue;
         this.eventTheme = eventTheme;
@@ -15,9 +22,15 @@ public class Events {
         this.endTime = endTime;
     }
 
+    public Events(String id, String eventImage, String eventName, String startTime, String eventVenue) {
+        this.id = id;
+        this.eventImage = eventImage;
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+        this.startTime = startTime;
+    }
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 

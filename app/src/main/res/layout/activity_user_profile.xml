@@ -1,141 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:background="@color/c1"
     tools:context=".member.UserProfile">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="5dp">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePic"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/profileavatar"
-            app:civ_border_color="@color/MetallicGold"
-            app:civ_border_width="1.5dp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:id="@+id/titlebar">
 
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow"
+            android:rotation="180"
+            app:tint="@color/red500" />
+
+        <TextView
+            android:id="@+id/backText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/backArrow"
+            android:fontFamily="@font/lora_bold"
+            android:background="#FFEBEE"
+            android:text="Back"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/editProfile"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow"
+            app:tint="@color/red500"/>
+
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:background="#FFEBEE"
+            android:layout_toStartOf="@+id/editProfile"
+            android:fontFamily="@font/lora_bold"
+            android:text="Edit Profile"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
 
 
+    <include layout="@layout/profile_card" />
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/logOut"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_below="@+id/contentLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/red500" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="18dp"
-            android:hint="First Name"
-            app:boxStrokeColor="@color/saddlebrown">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/firstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="18dp"
-            android:hint="Last Name"
-            app:boxStrokeColor="@color/saddlebrown">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/lastName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="18dp"
-            android:hint="Gender"
-            app:boxStrokeColor="@color/saddlebrown">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/userGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:hint="Email Address"
-            app:boxStrokeColor="@color/saddlebrown">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profilemail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="18dp"
-            android:hint="Phone Number"
-            app:boxStrokeColor="@color/saddlebrown">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phoneNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <Button
-            android:id="@+id/logOut"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/sign_btn"
-            android:text="Log Out"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/lora_bold"
+            android:text="Logout"
+            android:background="#FFEBEE"
+            android:textColor="@color/c3"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>
