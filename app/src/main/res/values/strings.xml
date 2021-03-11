@@ -3,4 +3,23 @@
     <string name="search_text">Search</string>
     <string name="upload_image">Upload Image..</string>
     <string name="event_details">Event Details</string>
+    <string-array name="categories">
+
+        <item>Handkerchief</item>
+        <item>T-Shirt</item>
+        <item>Cutlery</item>
+        <item>Scarfs</item>
+        <item>Hoodie</item>
+        <item>Hat</item>
+
+    </string-array>
+
+    <string-array name="size">
+        <item>XS</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+        <item>Standard</item>
+    </string-array>
 </resources>

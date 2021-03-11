@@ -12,7 +12,7 @@ import com.mosericko.aflewo.customer.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
-import com.mosericko.aflewo.fundraiser.Fundraiser;
+import com.mosericko.aflewo.productmanager.ProductManager;
 import com.mosericko.aflewo.member.MainActivity;
 
 public class SignActivityPrompt extends AppCompatActivity {
@@ -58,11 +58,13 @@ public class SignActivityPrompt extends AppCompatActivity {
                     finish();
                     break;
                 case "4":
-                    startActivity(new Intent(SignActivityPrompt.this, Index.class));
+                    Intent intent = new Intent(SignActivityPrompt.this,Index.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     finish();
                     break;
                 case "5":
-                    startActivity(new Intent(SignActivityPrompt.this, Fundraiser.class));
+                    startActivity(new Intent(SignActivityPrompt.this, ProductManager.class));
                     finish();
                     break;
 

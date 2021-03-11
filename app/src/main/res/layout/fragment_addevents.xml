@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/muli_extrabold"
+                android:fontFamily="@font/lora_bold"
                 android:gravity="center"
                 android:text="@string/event_details"
                 android:textColor="@color/black"
@@ -85,6 +85,8 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/ic_notes"
+                    app:startIconTint="@color/colorPrimary"
                     app:endIconMode="clear_text"
                     app:endIconTint="@color/Silver"
                     app:errorEnabled="true">
@@ -108,6 +110,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/ic_location"
+                    app:startIconTint="@color/colorPrimary"
                     app:endIconMode="clear_text"
                     app:endIconTint="@color/Silver"
                     app:errorEnabled="true">
@@ -131,6 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    app:startIconDrawable="@drawable/ic_iconfinder_about"
+                    app:startIconTint="@color/colorPrimary"
                     android:layout_marginEnd="10dp"
                     app:errorEnabled="true">
 
@@ -153,6 +159,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    app:startIconDrawable="@drawable/ic_clock"
+                    app:startIconTint="@color/colorPrimary"
                     android:layout_marginEnd="10dp"
                     app:errorEnabled="true">
 
@@ -175,6 +183,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    app:startIconDrawable="@drawable/ic_clock"
+                    app:startIconTint="@color/colorPrimary"
                     android:layout_marginEnd="10dp"
                     app:errorEnabled="true">
 
@@ -198,6 +208,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    app:startIconDrawable="@drawable/ic_event"
+                    app:startIconTint="@color/colorPrimary"
                     android:layout_marginEnd="10dp"
                     app:errorEnabled="true">
 

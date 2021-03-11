@@ -17,13 +17,13 @@ import com.mosericko.aflewo.customer.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
-import com.mosericko.aflewo.fundraiser.Fundraiser;
 import com.mosericko.aflewo.member.MainActivity;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
 import com.mosericko.aflewo.member.User;
 import com.mosericko.aflewo.database.DataBaseHandler;
+import com.mosericko.aflewo.productmanager.ProductManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -179,7 +179,7 @@ public class UserLogin extends AppCompatActivity {
                             finish();
                             break;
                         case "5":
-                            startActivity(new Intent(UserLogin.this, Fundraiser.class));
+                            startActivity(new Intent(UserLogin.this, ProductManager.class));
                             finish();
                             break;
                     }

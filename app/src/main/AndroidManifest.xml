@@ -11,8 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".customer.Index"
+        <activity android:name=".productmanager.EditProduct"
             android:theme="@style/GeneralTheme"/>
+        <activity
+            android:name=".customer.ProductDetails"
+            android:theme="@style/DetailsActivity" />
+        <activity
+            android:name=".productmanager.ProductManager"
+            android:theme="@style/GeneralTheme" />
+        <activity
+            android:name=".customer.Index"
+            android:theme="@style/GeneralTheme" />
         <activity
             android:name=".eventsmanager.EditEvent"
             android:theme="@style/GeneralTheme" />
@@ -32,8 +41,6 @@
         <activity
             android:name=".member.EditProfile"
             android:theme="@style/UserRegistration" />
-        <activity android:name=".customer.Marketing" />
-        <activity android:name=".fundraiser.Fundraiser" />
         <activity android:name=".financemanager.FinanceManager" />
         <activity
             android:name=".eventsmanager.EventsManager"

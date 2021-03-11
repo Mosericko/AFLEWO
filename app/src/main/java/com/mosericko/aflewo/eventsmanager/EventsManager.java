@@ -29,7 +29,6 @@ public class EventsManager extends AppCompatActivity {
         setContentView(R.layout.activity_events_manager);
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        FragmentTransaction fT=getSupportFragmentManager().beginTransaction();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EventListFragment()).commit();
