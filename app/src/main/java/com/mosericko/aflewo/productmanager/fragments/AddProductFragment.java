@@ -31,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
+import com.mosericko.aflewo.productmanager.ProductManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -255,6 +256,8 @@ public class AddProductFragment extends Fragment {
                 JSONObject obj = new JSONObject(s);
 
                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(context, ProductManager.class));
+                Objects.requireNonNull(getActivity()).finish();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
+import com.mosericko.aflewo.database.DataBaseHandler;
 
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.CATEGORY;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.COLOR;
+import static com.mosericko.aflewo.customer.fragments.HomeFragment.ID;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.IMAGE;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.NAME;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.PRICE;
@@ -20,7 +25,11 @@ import static com.mosericko.aflewo.customer.fragments.HomeFragment.SIZE;
 public class ProductDetails extends AppCompatActivity {
     ImageView prodImage;
     TextView name,color,price,category,size;
-    String nameIntent,colorIntent,priceIntent,categoryIntent,sizeIntent,imageIntent;
+    String idIn,nameIntent,colorIntent,priceIntent,categoryIntent,sizeIntent,imageIntent;
+    Button addToCart;
+    ImageView cartBackground;
+
+    DataBaseHandler myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +37,18 @@ public class ProductDetails extends AppCompatActivity {
 
         setContentView(R.layout.activity_product_details);
 
+        myDb = new DataBaseHandler(this);
+
         prodImage=findViewById(R.id.detail_image);
         name=findViewById(R.id.prod_name);
         color=findViewById(R.id.prod_color);
         price=findViewById(R.id.prod_price);
         category=findViewById(R.id.prod_category);
         size=findViewById(R.id.prod_size);
+        addToCart=findViewById(R.id.addToCart);
 
         Intent getDetailsIntent=getIntent();
+        idIn= getDetailsIntent.getStringExtra(ID);
         nameIntent = getDetailsIntent.getStringExtra(NAME);
         colorIntent = getDetailsIntent.getStringExtra(COLOR);
         priceIntent = getDetailsIntent.getStringExtra(PRICE);
@@ -51,6 +64,33 @@ public class ProductDetails extends AppCompatActivity {
         price.setText(priceIntent);
         category.setText(categoryIntent);
         size.setText(sizeIntent);
+
+
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* CartDetails products =new CartDetails(
+                        idIn,imageIntent,nameIntent,colorIntent,priceIntent,categoryIntent,sizeIntent
+                );
+
+                myDb.addToCart(products);
+                Toast.makeText(ProductDetails.this, "successfully added to the Cart", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ProductDetails.this,Index.class));
+                finish();*/
+
+                CartBottomSheet cartBottomSheet= new CartBottomSheet();
+                Bundle bundle = new Bundle();
+                bundle.putString("id",idIn);
+                bundle.putString("name",nameIntent);
+                bundle.putString("color",colorIntent);
+                bundle.putString("price",priceIntent);
+                bundle.putString("category",categoryIntent);
+                bundle.putString("size",sizeIntent);
+                bundle.putString("image",imageIntent);
+                cartBottomSheet.setArguments(bundle);
+                cartBottomSheet.show(getSupportFragmentManager(),"cartBottomSheet");
+            }
+        });
 
 
     }

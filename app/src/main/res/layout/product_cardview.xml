@@ -46,9 +46,10 @@
                     android:layout_width="50dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/ui_gradient" />
+                    android:background="@drawable/ui_gradient"
+                    android:layout_marginBottom="20dp"/>
 
-                <RelativeLayout
+               <!-- <RelativeLayout
                     android:id="@+id/edit_event"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,7 +73,7 @@
                         app:tint="@color/saddlebrown" />
 
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"

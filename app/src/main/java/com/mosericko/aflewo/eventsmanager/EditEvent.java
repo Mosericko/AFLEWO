@@ -1,14 +1,23 @@
 package com.mosericko.aflewo.eventsmanager;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,8 +33,12 @@ import com.mosericko.aflewo.helperclasses.URLs;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static com.mosericko.aflewo.eventsmanager.adapters.EventListAdapter.EXTRA_DATE;
 import static com.mosericko.aflewo.eventsmanager.adapters.EventListAdapter.EXTRA_END;
@@ -44,6 +57,15 @@ public class EditEvent extends AppCompatActivity {
     EditText editName,editVenue,editTheme,editStartTime,editEndTime,editDate;
     Button saveChanges;
     String id,imageUrl,name,venue,theme,start,end,date;
+    //image
+    ImageView selectPhoto;
+    ByteArrayOutputStream byteArrayOutputStream;
+    byte[] byteArray;
+    String imageString;
+    private final int galleryReqCode = 1;
+    private final int cameraReqCode = 2;
+    Bitmap bitmap, image;
+    private Uri fileTrace;
 
 
     @Override
@@ -51,7 +73,7 @@ public class EditEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
 
-        editPhoto=findViewById(R.id.editEventPhoto);
+        //editPhoto=findViewById(R.id.editEventPhoto);
         editName=findViewById(R.id.editEventName);
         editVenue=findViewById(R.id.editEventVenue);
         editTheme=findViewById(R.id.editEventTheme);
@@ -59,6 +81,7 @@ public class EditEvent extends AppCompatActivity {
         editEndTime=findViewById(R.id.editEndTime);
         editDate=findViewById(R.id.editEventDate);
         saveChanges=findViewById(R.id.saveEventChanges);
+        selectPhoto= findViewById(R.id.editEventPhoto);
 
         pickerDialog();
 
@@ -74,9 +97,24 @@ public class EditEvent extends AppCompatActivity {
         end=intent.getStringExtra(EXTRA_END);
         date=intent.getStringExtra(EXTRA_DATE);
 
+        if (!imageUrl.isEmpty()) {
+            fileTrace = Uri.parse(imageUrl);
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+            StrictMode.setThreadPolicy(policy);
+            try {
+                URL url = new URL(imageUrl);
+                image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch(IOException e) {
+                System.out.println(e);
+            }
+
+            bitmap = image;
+        }
+
         Glide.with(this)
                 .load(imageUrl)
-                .into(editPhoto);
+                .into(selectPhoto);
         editName.setText(name);
         editVenue.setText(venue);
         editTheme.setText(theme);
@@ -89,6 +127,13 @@ public class EditEvent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editEvent();
+            }
+        });
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        selectPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOptionsDialog();
             }
         });
 
@@ -160,7 +205,6 @@ public class EditEvent extends AppCompatActivity {
 
         });
     }
-
     private void editEvent() {
         final String eveName = editName.getText().toString().trim();
         final String eveVenue = editVenue.getText().toString().trim();
@@ -169,6 +213,15 @@ public class EditEvent extends AppCompatActivity {
         final String eveEndTime = editEndTime.getText().toString().trim();
         final String eveDate = editDate.getText().toString().trim();
 
+
+        if (fileTrace == null) {
+            Toast.makeText(this, "Select a Photo!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+        byteArray = byteArrayOutputStream.toByteArray();
+        imageString = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
 
         //EditText Validations
@@ -213,14 +266,14 @@ public class EditEvent extends AppCompatActivity {
             return;
         }
 
-        editEventAsync edit = new editEventAsync(id,eveName,eveVenue,eveTheme,eveStartTime,eveEndTime,eveDate);
+        editEventAsync edit = new editEventAsync(id,eveName,eveVenue,eveTheme,eveStartTime,eveEndTime,eveDate,imageString);
         edit.execute();
 
     }
     public class editEventAsync extends AsyncTask<Void,Void,String>{
-        String id,eName,eVenue,eTheme, startTime,endTime,eDate;
+        String id,eName,eVenue,eTheme, startTime,endTime,eDate,imageStr;
 
-        public editEventAsync(String id, String eName, String eVenue, String eTheme, String startTime, String endTime, String eDate) {
+        public editEventAsync(String id, String eName, String eVenue, String eTheme, String startTime, String endTime, String eDate,String imageStr) {
             this.id = id;
             this.eName = eName;
             this.eVenue = eVenue;
@@ -228,6 +281,7 @@ public class EditEvent extends AppCompatActivity {
             this.startTime = startTime;
             this.endTime = endTime;
             this.eDate = eDate;
+            this.imageStr= imageStr;
         }
 
         @Override
@@ -242,6 +296,7 @@ public class EditEvent extends AppCompatActivity {
             params.put("start_time", startTime);
             params.put("end_time", endTime);
             params.put("event_date", eDate);
+            params.put("event_image", imageStr);
 
             return requestHandler.sendPostRequest(URLs.URL_EDIT_EVENTS,params);
         }
@@ -253,7 +308,15 @@ public class EditEvent extends AppCompatActivity {
             try {
                 JSONObject obj = new JSONObject(s);
 
-                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                if (obj.getBoolean("error")){
+                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditEvent.this,EventsManager.class));
+                    finish();
+                }
+
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -262,4 +325,76 @@ public class EditEvent extends AppCompatActivity {
     }
 
 
+
+
+    //image
+
+    private void showOptionsDialog() {
+        AlertDialog.Builder optionsDialog = new AlertDialog.Builder(this);
+        String[] options = {"Take photo", "Choose Existing Photo"};
+
+        optionsDialog.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        takePhoto();
+                        break;
+
+                    case 1:
+                        choosePhoto();
+                        break;
+                }
+            }
+        });
+
+        optionsDialog.show();
+
+    }
+
+    private void choosePhoto() {
+
+        Intent gallery = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(gallery, galleryReqCode);
+    }
+
+    private void takePhoto() {
+
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, cameraReqCode);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == galleryReqCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filepath = data.getData();
+            fileTrace = data.getData();
+
+
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filepath);
+
+                Glide.with(this)
+                        .load(bitmap)
+                        .into(selectPhoto);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == cameraReqCode && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
+            bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+
+            Glide.with(this)
+                    .load(bitmap)
+                    .into(selectPhoto);
+
+
+        }
+    }
 }

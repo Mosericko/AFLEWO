@@ -97,19 +97,19 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/marketing"
+            android:id="@+id/customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marketing Coordinator"
+            android:text="Customer"
             android:textColor="#fff"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/fundraiser"
+            android:id="@+id/productManager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:text="Fundraising Coordinator"
+            android:text="Product Manager"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

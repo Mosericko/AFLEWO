@@ -12,6 +12,7 @@ public class PrefManager {
     private static final String PREF_NAME = "com.mosericko.aflewo";
     private static final String ID = "userID";
     private static final String IS_LOGGED_IN = "loggedIn";
+    public static final String CHECKED_RADIO_ID = "radioId";
     @SuppressLint("StaticFieldLeak")
     private static PrefManager prefInstance;
     @SuppressLint("StaticFieldLeak")
@@ -41,6 +42,12 @@ public class PrefManager {
         editor.putBoolean(IS_LOGGED_IN, true);
         editor.apply();
     }
+/*
+    public void setCheckedID(){
+        sharedPreferences = mCtx.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        editor
+    }*/
 
 
     public boolean isLoggedIn() {
@@ -54,6 +61,10 @@ public class PrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getInt(ID, -1);
     }
+
+    /*public int getCheckedRadioButtonId(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences();
+    }*/
 
 
     public String UserType() {

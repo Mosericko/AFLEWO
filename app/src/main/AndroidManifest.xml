@@ -10,9 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".productmanager.EditProduct"
-            android:theme="@style/GeneralTheme"/>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".productmanager.EditProduct"
+            android:theme="@style/GeneralTheme" />
         <activity
             android:name=".customer.ProductDetails"
             android:theme="@style/DetailsActivity" />
@@ -50,7 +52,9 @@
         <activity
             android:name=".loginregistration.UserRegistration"
             android:theme="@style/AppTheme" />
-        <activity android:name=".loginregistration.SignActivityPrompt">
+        <activity
+            android:name=".loginregistration.SignActivityPrompt"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

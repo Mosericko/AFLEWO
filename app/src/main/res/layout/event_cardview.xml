@@ -27,9 +27,11 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/event_image"
             android:ellipsize="end"
-            android:fontFamily="@font/muli_extrabold"
+            android:maxLines="1"
+            android:fontFamily="@font/playfair_display"
+            android:includeFontPadding="false"
             android:text="Event Name"
-            android:textColor="@color/c3"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -44,9 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/muli_extrabold"
+                android:fontFamily="@font/cantora_one"
+                android:includeFontPadding="false"
                 android:paddingStart="10dp"
-                android:text="Event Date  : "
+                android:text="Event Date - "
                 android:textColor="@color/AliExpress"
                 android:textStyle="bold" />
 
@@ -73,9 +76,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/muli_extrabold"
-                android:paddingStart="10dp"
-                android:text="Start Time  : "
+                android:fontFamily="@font/cantora_one"
+                android:layout_marginStart="10dp"
+                android:text="Start Time -"
                 android:textColor="@color/AliExpress"
                 android:textStyle="bold" />
 
@@ -104,8 +107,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/muli_extrabold"
-                android:paddingStart="10dp"
-                android:text="End Time     : "
+                android:layout_marginStart="10dp"
+                android:text="End Time - "
                 android:textColor="@color/AliExpress"
                 android:textStyle="bold" />
 

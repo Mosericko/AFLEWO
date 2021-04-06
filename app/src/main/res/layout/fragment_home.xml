@@ -40,7 +40,7 @@
                 android:layout_height="200dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/ui_gradient">
+                android:background="@drawable/category1">
 
 
                 <ImageView
@@ -55,7 +55,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/cantora_one"
                     android:text="Hello,"
@@ -68,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/coachTitle"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:fontFamily="@font/playfair_display"
                     android:text="KEVIN"
                     android:textColor="@color/white"

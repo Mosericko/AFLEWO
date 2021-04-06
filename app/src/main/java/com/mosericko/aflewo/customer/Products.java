@@ -19,6 +19,9 @@ public class Products {
         this.size = size;
     }
 
+    public Products() {
+    }
+
     public String getId() {
         return id;
     }
@@ -45,5 +48,33 @@ public class Products {
 
     public String getSize() {
         return size;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

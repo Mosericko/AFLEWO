@@ -82,10 +82,10 @@ public class MoreDetails extends AppCompatActivity {
             case "Finance Manager":
                 typeUser = "3";
                 break;
-            case "Marketing Coordinator":
+            case "Customer":
                 typeUser = "4";
                 break;
-            case "Fundraising Coordinator":
+            case "Product Manager":
                 typeUser = "5";
                 break;
 

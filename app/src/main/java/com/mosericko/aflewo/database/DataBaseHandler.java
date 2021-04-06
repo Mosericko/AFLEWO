@@ -8,8 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.mosericko.aflewo.customer.CartDetails;
+import com.mosericko.aflewo.customer.Products;
 import com.mosericko.aflewo.eventsmanager.Events;
 import com.mosericko.aflewo.member.User;
+
+import java.util.ArrayList;
 
 public class DataBaseHandler extends SQLiteOpenHelper {
 
@@ -20,6 +24,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     //Database tables
     private static final String USER_TABLE = "userProfile";
     private static final String EVENTS_TABLE = "aflewoEvents";
+    private static final String CART_TABLE = "aflewoCart";
 
 
     //table fields for userProfile
@@ -39,6 +44,17 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     private static final String START_TIME = "startTime";
     private static final String END_TIME = "endTime";
     private static final String EVENT_DATE = "eventDate";
+
+    //table fields for adding to Cart
+    public static final String PRIMARY_ID = "primary_id";
+    public static final String PRODUCT_ID = "id";
+    public static final String PRODUCT_IMAGE = "image";
+    public static final String PRODUCT_NAME = "name";
+    public static final String PRODUCT_COLOR = "color";
+    public static final String PRODUCT_PRICE = "price";
+    public static final String PRODUCT_SIZE = "size";
+    public static final String PRODUCT_CATEGORY = "category";
+    public static final String PRODUCT_QUANTITY = "quantity";
 
 
     public DataBaseHandler(@Nullable Context context) {
@@ -73,6 +89,18 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         db.execSQL(eventSQL);
 
+        String cartSQL = "CREATE TABLE "+ CART_TABLE + "(" + PRIMARY_ID + " INTEGER PRIMARY KEY, "
+                + PRODUCT_ID + " INTEGER, "
+                + PRODUCT_NAME + " TEXT, "
+                + PRODUCT_COLOR + " TEXT, "
+                +PRODUCT_CATEGORY+ " TEXT, "
+                +PRODUCT_SIZE + " VARCHAR, "
+                +PRODUCT_PRICE + " VARCHAR, "
+                +PRODUCT_IMAGE+ " VARCHAR, "
+                +PRODUCT_QUANTITY+ " INTEGER " + ");";
+
+        db.execSQL(cartSQL);
+
     }
 
     @Override
@@ -80,6 +108,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         //if the tables already exist
         db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + EVENTS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + CART_TABLE);
         // Create the table after dropping the existing ones
         onCreate(db);
 
@@ -151,6 +180,26 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         myDb.close();
     }
 
+
+    //add Items to Cart
+    public void addToCart(CartDetails products){
+        SQLiteDatabase myDb= this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(PRODUCT_ID,products.getId());
+        cv.put(PRODUCT_NAME,products.getProductName());
+        cv.put(PRODUCT_COLOR,products.getColor());
+        cv.put(PRODUCT_CATEGORY,products.getCategory());
+        cv.put(PRODUCT_SIZE,products.getSize());
+        cv.put(PRODUCT_PRICE,products.getPrice());
+        cv.put(PRODUCT_IMAGE,products.getProductImage());
+        cv.put(PRODUCT_QUANTITY,products.getQuantity());
+
+        myDb.insert(CART_TABLE,null,cv);
+        myDb.close();
+    }
+
+
     public void updateProfile(User user, int id) {
         SQLiteDatabase myDb = this.getWritableDatabase();
         ContentValues updateValue = new ContentValues();
@@ -161,6 +210,65 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         myDb.update(USER_TABLE, updateValue, "id = ?", new String[]{String.valueOf(id)});
 
+    }
+
+    //getCartDetails
+
+    public ArrayList<CartDetails> getCartDetails(){
+        ArrayList<CartDetails> cartList = new ArrayList<>();
+        SQLiteDatabase myDb = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + CART_TABLE;
+
+        Cursor cursor = myDb.rawQuery(sql,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                CartDetails cartDetails = new CartDetails();
+                cartDetails.setId(cursor.getString(cursor.getColumnIndex(PRODUCT_ID)));
+                cartDetails.setProductName(cursor.getString(cursor.getColumnIndex(PRODUCT_NAME)));
+                cartDetails.setColor(cursor.getString(cursor.getColumnIndex(PRODUCT_COLOR)));
+                cartDetails.setCategory(cursor.getString(cursor.getColumnIndex(PRODUCT_CATEGORY)));
+                cartDetails.setSize(cursor.getString(cursor.getColumnIndex(PRODUCT_SIZE)));
+                cartDetails.setPrice(cursor.getString(cursor.getColumnIndex(PRODUCT_PRICE)));
+                cartDetails.setProductImage(cursor.getString(cursor.getColumnIndex(PRODUCT_IMAGE)));
+                cartDetails.setQuantity(cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY)));
+
+                cartList.add(cartDetails);
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        myDb.close();
+
+        return cartList;
+    }
+
+    public void deleteCartItems(){
+        //this method will be called out once the user logs out of their account
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        String sQL= "DELETE FROM " + CART_TABLE;
+        myDb.execSQL(sQL);
+        myDb.close();
+    }
+
+    public void deleteOneItem(int id){
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        String sql = "DELETE FROM " + CART_TABLE+ " WHERE id = " + id;
+        myDb.execSQL(sql);
+        myDb.close();
+    }
+
+
+    public boolean checkIfRowExists(CartDetails cartDetails){
+        boolean exists;
+        SQLiteDatabase myDb = this.getReadableDatabase();
+        String checkQuery = "SELECT * FROM "+ CART_TABLE+ " WHERE id = " + cartDetails.getId();
+        Cursor cursor = myDb.rawQuery(checkQuery,null);
+        exists= cursor.getCount() > 0;
+
+        cursor.close();
+
+       return exists;
     }
 
 

@@ -373,7 +373,9 @@ public class AddEventFragment extends Fragment {
 
                 if (!jsonObject.getBoolean("error")) {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                    nextFrag();
+                    //nextFrag();
+                    startActivity(new Intent(getContext(),EventsManager.class));
+                    Objects.requireNonNull(getActivity()).finish();
                 } else {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                 }

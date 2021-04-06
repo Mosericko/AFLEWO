@@ -2,7 +2,7 @@ package com.mosericko.aflewo.helperclasses;
 
 public class URLs {
 
-    private static final String ROOT_URL = "http://192.168.43.96/aflewoapp/SignActivity/Operations.php?signactivitycall=";
+    private static final String ROOT_URL = "http://192.168.0.105/aflewoapp/SignActivity/Operations.php?signactivitycall=";
     public static final String URL_REGISTER = ROOT_URL + "signup";
     public static final String URL_LOGIN = ROOT_URL + "login";
     public static final String URL_ADD_EVENTS = ROOT_URL + "add_event";
@@ -15,3 +15,4 @@ public class URLs {
     public static final String URL_ADD_PRODUCTS = ROOT_URL + "addProducts";
     public static final String URL_FETCH_PRODUCTS = ROOT_URL+ "fetchProducts" ;
 }
+//192.168.43.96
