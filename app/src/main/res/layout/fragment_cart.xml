@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,13 +13,12 @@
 
 
         <TextView
-
+            android:id="@+id/cartLab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#F3E5F5"
             android:fontFamily="@font/lora_bold"
             android:text="Cart"
-            android:id="@+id/cartLab"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -28,36 +27,37 @@
 
     <ImageView
         android:id="@+id/cartBackgroundImage"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_undraw_add_to_cart"
+        android:src="@drawable/ic_add_to_cart_amico"
         android:visibility="visible" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/hiddenLayout2"
         android:layout_below="@+id/cartLabel"
         android:layout_margin="2dp"
-        android:layout_above="@+id/hiddenLayout2"
-        tools:listitem="@layout/cart_cardview"/>
+        tools:listitem="@layout/cart_cardview" />
 
     <RelativeLayout
+        android:id="@+id/hiddenLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hiddenLayout">
+        android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/clearItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/stroke_two"
             android:fontFamily="@font/lato_bold"
             android:padding="5dp"
-            android:id="@+id/clearItems"
             android:text="Clear All"
             android:textAllCaps="false"
             android:textColor="@color/black" />
@@ -68,8 +68,8 @@
         android:id="@+id/hiddenLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/shadegrey"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/shadegrey">
 
         <Button
             android:id="@+id/checkOut"
@@ -86,11 +86,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/muli_extrabold"
-            android:textColor="@color/AliExpress"
             android:layout_toStartOf="@+id/checkOut"
-            android:text="100" />
+            android:fontFamily="@font/muli_extrabold"
+            android:text="100"
+            android:textColor="@color/AliExpress"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/kSh"
@@ -98,21 +98,21 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/muli_extrabold"
-            android:textColor="@color/AliExpress"
             android:layout_toStartOf="@+id/totalPrice"
-            android:text="Ksh" />
+            android:fontFamily="@font/muli_extrabold"
+            android:text="Ksh"
+            android:textColor="@color/AliExpress"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_toStartOf="@+id/kSh"
-            android:text="Total:" />
+            android:text="Total:"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

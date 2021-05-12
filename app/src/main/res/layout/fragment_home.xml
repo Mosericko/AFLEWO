@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/coachTitle"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/edosz"
                     android:text="KEVIN"
                     android:textColor="@color/white"
                     android:textSize="30sp"

@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c1"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".loginregistration.UserLogin">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/muli_extrabold"
-        android:text="User Login"
-        android:textAllCaps="true"
-        android:textColor="@color/MetallicGold"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_above="@id/formLay"
+        android:src="@drawable/ic_login_pana" />
+
 
     <LinearLayout
+        android:id="@+id/formLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/baloo"
+            android:text="User Login"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mailTil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:textColorHint="@color/Silver"
+            android:textColorHint="@color/c3"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -44,20 +53,22 @@
                 android:layout_height="wrap_content"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
-                android:textColor="#fff">
+                android:textColor="@color/colorPrimary">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passTil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:textColorHint="@color/Silver"
+            android:textColorHint="@color/c3"
             app:errorEnabled="true"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginPass"
@@ -65,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#fff">
+                android:textColor="@color/colorPrimary">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,22 +84,24 @@
 
 
     <LinearLayout
+        android:id="@+id/btnLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/formLay"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/login"
             android:layout_width="150dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="20dp"
             android:background="@drawable/sign_btn"
             android:fontFamily="@font/muli_extrabold"
             android:text="Log in"
             android:textAllCaps="false"
-            android:textColor="@color/MetallicGold"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -100,10 +113,38 @@
             android:fontFamily="@font/muli_extrabold"
             android:gravity="end"
             android:text="Forgot password?"
-            android:textColor="@color/MetallicGold"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
-
-
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
+            android:text="Don't have an account?"
+            android:textColor="@color/c3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_register"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/categ6"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Register Here"
+            android:textColor="@color/Splash"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

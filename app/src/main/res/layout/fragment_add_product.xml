@@ -218,14 +218,14 @@
                                 android:id="@+id/cutlery"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Cutlery"
+                                android:text="Mugs"
                                 android:textColor="@color/black" />
 
                             <RadioButton
                                 android:id="@+id/handkerchief"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Handkerchiefs"
+                                android:text="Napkins"
                                 android:textColor="@color/black" />
 
 

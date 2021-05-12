@@ -23,7 +23,6 @@ public class ProductManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_manager);
 
-
         bottomNavigationView=findViewById(R.id.prod_bottom_nav);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);

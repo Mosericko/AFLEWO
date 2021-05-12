@@ -33,6 +33,10 @@ public class CartDetails {
         this.quantity = quantity;
     }
 
+    public CartDetails(String quantity) {
+        this.quantity = quantity;
+    }
+
     public String getId() {
         return id;
     }

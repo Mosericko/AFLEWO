@@ -1,10 +1,12 @@
 package com.mosericko.aflewo.customer.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.CartDetails;
+import com.mosericko.aflewo.customer.CheckOut;
 import com.mosericko.aflewo.customer.Products;
 import com.mosericko.aflewo.customer.adapters.CartAdapter;
 import com.mosericko.aflewo.database.DataBaseHandler;
@@ -35,6 +38,7 @@ public class CartFragment extends Fragment {
     ArrayList<CartDetails> cartArray = new ArrayList<>();
     DataBaseHandler myDb;
     TextView totalPrice;
+    Button checkOut;
 
     @Nullable
     @Override
@@ -47,28 +51,29 @@ public class CartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = this.getContext();
         imageView = view.findViewById(R.id.cartBackgroundImage);
-        hiddenLay=view.findViewById(R.id.hiddenLayout);
+        hiddenLay = view.findViewById(R.id.hiddenLayout);
         hiddenLay2 = view.findViewById(R.id.hiddenLayout2);
         recyclerView = view.findViewById(R.id.cartRecycler);
-        clearAll=view.findViewById(R.id.clearItems);
+        clearAll = view.findViewById(R.id.clearItems);
         totalPrice = view.findViewById(R.id.totalPrice);
+        checkOut = view.findViewById(R.id.checkOut);
 
-        clearAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDb.deleteCartItems();
-                clearAllItems();
-                Toast.makeText(context, "Items Cleared Successfully!", Toast.LENGTH_SHORT).show();
-            }
+        clearAll.setOnClickListener(v -> {
+            myDb.deleteCartItems();
+            clearAllItems();
+            Toast.makeText(context, "Items Cleared Successfully!", Toast.LENGTH_SHORT).show();
         });
+
+
 
         loadCart();
         grandTotal();
 
 
+
     }
 
-    private void loadCart() {
+    public void loadCart() {
 
         myDb = new DataBaseHandler(context);
         recyclerView.setHasFixedSize(true);
@@ -79,11 +84,11 @@ public class CartFragment extends Fragment {
         cartAdapter = new CartAdapter(context, cartArray);
         recyclerView.setAdapter(cartAdapter);
 
-        if (cartArray.isEmpty()){
+        if (cartArray.isEmpty()) {
             imageView.setVisibility(View.VISIBLE);
             hiddenLay.setVisibility(View.GONE);
             hiddenLay2.setVisibility(View.GONE);
-        }else{
+        } else {
             imageView.setVisibility(View.GONE);
             hiddenLay.setVisibility(View.VISIBLE);
             hiddenLay2.setVisibility(View.VISIBLE);
@@ -92,28 +97,36 @@ public class CartFragment extends Fragment {
 
     }
 
-    private void grandTotal(){
+    private void grandTotal() {
         int position;
         int priceTotal = 0;
         CartDetails cartDetails;
 
 
-
-        for (position=0;position<cartArray.size();position++){
+        for (position = 0; position < cartArray.size(); position++) {
             cartDetails = cartArray.get(position);
-            priceTotal = priceTotal+(Integer.parseInt(cartDetails.getPrice())*Integer.parseInt(cartDetails.getQuantity()));
+            priceTotal = priceTotal + (Integer.parseInt(cartDetails.getPrice()) * Integer.parseInt(cartDetails.getQuantity()));
 
             totalPrice.setText(String.valueOf(priceTotal));
+
+            int finalPriceTotal = priceTotal;
+
+            checkOut.setOnClickListener(v -> {
+                Intent intent = new Intent(context,CheckOut.class);
+                intent.putExtra("Price",String.valueOf(finalPriceTotal));
+
+                startActivity(intent);
+            });
 
         }
     }
 
-    public void clearAllItems(){
+    public void clearAllItems() {
         int size = cartArray.size();
         if (size > 0) {
             cartArray.subList(0, size).clear();
 
-            cartAdapter.notifyItemRangeRemoved(0,size);
+            cartAdapter.notifyItemRangeRemoved(0, size);
             hiddenLay.setVisibility(View.GONE);
             hiddenLay2.setVisibility(View.GONE);
             imageView.setVisibility(View.VISIBLE);

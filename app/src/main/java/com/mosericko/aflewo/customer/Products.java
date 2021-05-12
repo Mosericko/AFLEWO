@@ -22,6 +22,13 @@ public class Products {
     public Products() {
     }
 
+//    public Products(String id, String productName, String productImage) {
+//        this.id = id;
+//        this.productName = productName;
+//        this.productImage = productImage;
+//    }
+
+
     public String getId() {
         return id;
     }

@@ -172,12 +172,10 @@ public class AddProductFragment extends Fragment {
     private void sendDetailsToDb() {
 
         int selectedCategory= category.getCheckedRadioButtonId();
-        selectedCat = getView().findViewById(selectedCategory);
+        selectedCat = Objects.requireNonNull(getView()).findViewById(selectedCategory);
 
         int selected_size = size.getCheckedRadioButtonId();
         selectedSize= getView().findViewById(selected_size);
-
-
 
         final String productName = prodName.getText().toString().trim();
         final String productColor = prodColor.getText().toString().trim();

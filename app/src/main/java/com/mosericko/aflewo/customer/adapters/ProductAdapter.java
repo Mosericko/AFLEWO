@@ -53,11 +53,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Products products= productList.get(position);
 
-        RequestOptions requestOptions= new RequestOptions()
-                .placeholder(R.drawable.african);
+//        RequestOptions requestOptions= new RequestOptions()
+//                .placeholder(R.drawable.african);
         Glide.with(context)
                 .load(products.getProductImage())
-                .apply(requestOptions)
+//                .apply(requestOptions)
                 .into(holder.productImage);
         holder.productTittle.setText(products.getProductName());
 

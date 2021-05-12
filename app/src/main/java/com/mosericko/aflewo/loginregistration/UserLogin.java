@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class UserLogin extends AppCompatActivity {
     EditText email, password;
     Button login;
-    TextView forgotPassword;
+    TextView forgotPassword,register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,13 @@ public class UserLogin extends AppCompatActivity {
         password = findViewById(R.id.loginPass);
         login = findViewById(R.id.login);
         forgotPassword = findViewById(R.id.forgotPass);
+        register = findViewById(R.id.user_register);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(v -> userLogin());
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userLogin();
+                startActivity(new Intent(UserLogin.this,UserRegistration.class));
             }
         });
     }

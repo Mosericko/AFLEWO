@@ -92,36 +92,33 @@ public class HomeFragment extends Fragment implements ProductAdapter.ItemClickLi
         requestQueue = Volley.newRequestQueue(context);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLs.URL_FETCH_PRODUCTS, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
+                response -> {
 
-                        try {
-                            //loop through the event details array
-                            for (int i = 0; i < response.length(); i++) {
+                    try {
+                        //loop through the event details array
+                        for (int i = 0; i < response.length(); i++) {
 
-                                //get the current Json Object
-                                JSONObject productDetails = response.getJSONObject(i);
+                            //get the current Json Object
+                            JSONObject productDetails = response.getJSONObject(i);
 
-                                String id = productDetails.getString("id");
-                                String image = productDetails.getString("image");
-                                String name = productDetails.getString("name");
-                                String color = productDetails.getString("color");
-                                String price = productDetails.getString("price");
-                                String category = productDetails.getString("category");
-                                String size = productDetails.getString("size");
+                            String id = productDetails.getString("id");
+                            String image = productDetails.getString("image");
+                            String name = productDetails.getString("name");
+                            String color = productDetails.getString("color");
+                            String price = productDetails.getString("price");
+                            String category = productDetails.getString("category");
+                            String size = productDetails.getString("size");
 
 
-                                productsArrayList.add(new Products(id, image, name, color, price, category, size));
-                            }
-
-                            productAdapter = new ProductAdapter(productsArrayList, context);
-                            recyclerView.setAdapter(productAdapter);
-                            productAdapter.setOnItemClickListener(HomeFragment.this);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            productsArrayList.add(new Products(id, image, name, color, price, category, size));
                         }
+
+                        productAdapter = new ProductAdapter(productsArrayList, context);
+                        recyclerView.setAdapter(productAdapter);
+                        productAdapter.setOnItemClickListener(HomeFragment.this);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }, new Response.ErrorListener() {
             @Override

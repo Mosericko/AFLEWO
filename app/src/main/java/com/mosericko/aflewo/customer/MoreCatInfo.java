@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
@@ -22,20 +21,19 @@ import static com.mosericko.aflewo.customer.fragments.HomeFragment.NAME;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.PRICE;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.SIZE;
 
-public class ProductDetails extends AppCompatActivity {
+public class MoreCatInfo extends AppCompatActivity {
+
     ImageView prodImage;
     TextView name, color, price, category, size;
     String idIn, nameIntent, colorIntent, priceIntent, categoryIntent, sizeIntent, imageIntent;
     Button addToCart;
-    ImageView cartBackground;
 
     DataBaseHandler myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_more_cat_info);
 
         myDb = new DataBaseHandler(this);
 
@@ -69,14 +67,6 @@ public class ProductDetails extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* CartDetails products =new CartDetails(
-                        idIn,imageIntent,nameIntent,colorIntent,priceIntent,categoryIntent,sizeIntent
-                );
-
-                myDb.addToCart(products);
-                Toast.makeText(ProductDetails.this, "successfully added to the Cart", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ProductDetails.this,Index.class));
-                finish();*/
 
                 CartBottomSheet cartBottomSheet = new CartBottomSheet();
                 Bundle bundle = new Bundle();
@@ -91,6 +81,7 @@ public class ProductDetails extends AppCompatActivity {
                 cartBottomSheet.show(getSupportFragmentManager(), "cartBottomSheet");
             }
         });
+
 
 
     }

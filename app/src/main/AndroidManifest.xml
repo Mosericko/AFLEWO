@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".customer.CheckOut"
+            android:theme="@style/UserRegistration"/>
+        <activity
+            android:name=".customer.MoreCatInfo"
+            android:theme="@style/DetailsActivity" />
+        <activity
+            android:name=".customer.CategoryItems"
+            android:theme="@style/UserRegistration" />
         <activity
             android:name=".productmanager.EditProduct"
             android:theme="@style/GeneralTheme" />
@@ -48,7 +56,9 @@
             android:name=".eventsmanager.EventsManager"
             android:theme="@style/UserRegistration" />
         <activity android:name=".loginregistration.MoreDetails" />
-        <activity android:name=".loginregistration.UserLogin" />
+        <activity
+            android:name=".loginregistration.UserLogin"
+            android:theme="@style/UserRegistration" />
         <activity
             android:name=".loginregistration.UserRegistration"
             android:theme="@style/AppTheme" />

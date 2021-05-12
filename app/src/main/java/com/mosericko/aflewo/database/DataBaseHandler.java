@@ -271,6 +271,15 @@ public class DataBaseHandler extends SQLiteOpenHelper {
        return exists;
     }
 
+    public void updateQuantity(CartDetails cartDetails, int id){
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put( PRODUCT_QUANTITY,cartDetails.getQuantity());
+
+        myDb.update(CART_TABLE, cv, "id = ?", new String[]{String.valueOf(id)});
+    }
+
 
 }
 
