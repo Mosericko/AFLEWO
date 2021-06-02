@@ -47,7 +47,7 @@ public class AddProductFragment extends Fragment {
 
     private static final String TAG = "Check Error" ;
     ImageView selectProdPhoto;
-    EditText prodName,prodColor,prodPrice;
+    EditText prodName,prodColor,prodPrice,productQuantity;
     RadioGroup category,size;
     Button saveProd;
     Context context;
@@ -79,6 +79,7 @@ public class AddProductFragment extends Fragment {
         prodPrice= view.findViewById(R.id.prodPrice);
         saveProd= view.findViewById(R.id.saveProduct);
         category= view.findViewById(R.id.prodCategory);
+        productQuantity = view.findViewById(R.id.quantityProd);
         size= view.findViewById(R.id.size);
 
        /* selectedCat = view.findViewById(category.getCheckedRadioButtonId());
@@ -182,11 +183,12 @@ public class AddProductFragment extends Fragment {
         final String productPrice = prodPrice.getText().toString().trim();
         final String catRadio = selectedCat.getText().toString().trim();
         final String sizeRadio = selectedSize.getText().toString().trim();
+        final String productQuanta = productQuantity.getText().toString().trim();
 
         Log.d("tag","radioButton.getText()" + selectedSize.getText());
 
         if (fileTrace == null) {
-            Toast.makeText(context, "Select a Photo!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Select Product Photo!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -212,23 +214,30 @@ public class AddProductFragment extends Fragment {
             prodPrice.requestFocus();
             return;
         }
+        if (TextUtils.isEmpty(productQuanta)){
+            productQuantity.setError("Please Enter Product Quantity!");
+            productQuantity.requestFocus();
+            return;
+        }
 
-        SendDetailsAsync sendDetails= new SendDetailsAsync(imageString, productName,productColor,productPrice,catRadio,sizeRadio);
+        SendDetailsAsync sendDetails= new SendDetailsAsync(imageString, productName,productColor,productPrice,catRadio,sizeRadio,productQuanta);
         sendDetails.execute();
     }
 
 
     public class SendDetailsAsync extends AsyncTask<Void,Void,String>{
 
-        String imageStr,name,color,price,category,size;
+        String imageStr,name,color,price,category,size,quantity;
 
-        public SendDetailsAsync(String imageStr,String name, String color, String price, String category, String size) {
+
+        public SendDetailsAsync(String imageStr,String name, String color, String price, String category, String size,String quantity) {
             this.imageStr = imageStr;
             this.name = name;
             this.color = color;
             this.price = price;
             this.category = category;
             this.size = size;
+            this.quantity = quantity;
         }
 
         @Override
@@ -242,6 +251,7 @@ public class AddProductFragment extends Fragment {
             params.put("price",price);
             params.put("category",category);
             params.put("size",size);
+            params.put("quantity",quantity);
 
             return requestHandler.sendPostRequest(URLs.URL_ADD_PRODUCTS,params);
         }

@@ -45,9 +45,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Black"
-                    android:textColor="@color/c3"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -82,9 +82,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Hoodie"
-                    android:textColor="@color/c3"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -117,9 +117,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Extra Small [XS]"
-                    android:textColor="@color/c3"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -152,10 +152,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/lato_bold"
                     android:text="25"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                     />
             </LinearLayout>
 
 
@@ -186,10 +186,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/playfair_display"
+                    android:fontFamily="@font/lato_bold"
                     android:text="2500"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                     />
             </LinearLayout>
 
 

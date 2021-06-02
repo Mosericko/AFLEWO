@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.ItemClickLi
     public static final String CATEGORY = "category";
     public static final String SIZE = "size";
     public static final String IMAGE = "image";
+    public static final String QUANTITY = "quantity";
 
     RecyclerView recyclerView;
     ArrayList<Products> productsArrayList = new ArrayList<>();
@@ -108,9 +109,10 @@ public class HomeFragment extends Fragment implements ProductAdapter.ItemClickLi
                             String price = productDetails.getString("price");
                             String category = productDetails.getString("category");
                             String size = productDetails.getString("size");
+                            String quantity = productDetails.getString("quantity");
 
 
-                            productsArrayList.add(new Products(id, image, name, color, price, category, size));
+                            productsArrayList.add(new Products(id, image, name, color, price, category, size,quantity));
                         }
 
                         productAdapter = new ProductAdapter(productsArrayList, context);
@@ -144,6 +146,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.ItemClickLi
        prodDetails.putExtra(SIZE,clickedItem.getSize());
        prodDetails.putExtra(PRICE,clickedItem.getPrice());
        prodDetails.putExtra(IMAGE,clickedItem.getProductImage());
+       prodDetails.putExtra(QUANTITY,clickedItem.getQuantity());
 
        startActivity(prodDetails);
 

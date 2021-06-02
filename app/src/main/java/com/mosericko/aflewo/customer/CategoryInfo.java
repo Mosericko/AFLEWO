@@ -6,9 +6,9 @@ public class CategoryInfo {
     String name;
     String color;
     String price;
-    String category,size;
+    String category,size,quantity;
 
-    public CategoryInfo(String id, String image, String name, String color, String price, String category, String size) {
+    public CategoryInfo(String id, String image, String name, String color, String price, String category, String size,String quantity) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -16,6 +16,7 @@ public class CategoryInfo {
         this.price = price;
         this.category = category;
         this.size = size;
+        this.quantity = quantity;
     }
 
     public CategoryInfo(String image, String name) {
@@ -49,5 +50,9 @@ public class CategoryInfo {
 
     public String getName() {
         return name;
+    }
+
+    public String getQuantity() {
+        return quantity;
     }
 }

@@ -65,43 +65,35 @@ public class EventListFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(context);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLs.URL_FETCH_EVENTS, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
+                response -> {
 
-                        try {
-                            //loop through the event details array
-                            for (int i = 0; i < response.length(); i++) {
+                    try {
+                        //loop through the event details array
+                        for (int i = 0; i < response.length(); i++) {
 
-                                //get the current Json Object
-                                JSONObject eventDetails = response.getJSONObject(i);
+                            //get the current Json Object
+                            JSONObject eventDetails = response.getJSONObject(i);
 
-                                String id = eventDetails.getString("id");
-                                String eventName = eventDetails.getString("event_name");
-                                String eventVenue = eventDetails.getString("event_venue");
-                                String eventTheme = eventDetails.getString("event_theme");
-                                String startTime = eventDetails.getString("start_time");
-                                String endTime = eventDetails.getString("end_time");
-                                String eventDate = eventDetails.getString("event_date");
-                                String eventImage = eventDetails.getString("event_image");
+                            String id = eventDetails.getString("id");
+                            String eventName = eventDetails.getString("event_name");
+                            String eventVenue = eventDetails.getString("event_venue");
+                            String eventTheme = eventDetails.getString("event_theme");
+                            String startTime = eventDetails.getString("start_time");
+                            String endTime = eventDetails.getString("end_time");
+                            String eventDate = eventDetails.getString("event_date");
+                            String eventImage = eventDetails.getString("event_image");
 
-                                eventsArrayList.add(new Events(id, eventImage, eventName, eventVenue, eventTheme, eventDate, startTime, endTime));
-                                myDb.addEvents(new Events(id, eventImage, eventName, eventVenue, eventTheme, eventDate, startTime, endTime));
-                            }
-
-                            eventListAdapter = new EventListAdapter(eventsArrayList, context);
-                            eventsRecycler.setAdapter(eventListAdapter);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            eventsArrayList.add(new Events(id, eventImage, eventName, eventVenue, eventTheme, eventDate, startTime, endTime));
+                            myDb.addEvents(new Events(id, eventImage, eventName, eventVenue, eventTheme, eventDate, startTime, endTime));
                         }
+
+                        eventListAdapter = new EventListAdapter(eventsArrayList, context);
+                        eventsRecycler.setAdapter(eventListAdapter);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                }, error -> error.printStackTrace());
 
         requestQueue.add(jsonArrayRequest);
     }

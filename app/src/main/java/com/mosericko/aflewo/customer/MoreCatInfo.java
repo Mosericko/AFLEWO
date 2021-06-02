@@ -19,13 +19,14 @@ import static com.mosericko.aflewo.customer.fragments.HomeFragment.ID;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.IMAGE;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.NAME;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.PRICE;
+import static com.mosericko.aflewo.customer.fragments.HomeFragment.QUANTITY;
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.SIZE;
 
 public class MoreCatInfo extends AppCompatActivity {
 
     ImageView prodImage;
-    TextView name, color, price, category, size;
-    String idIn, nameIntent, colorIntent, priceIntent, categoryIntent, sizeIntent, imageIntent;
+    TextView name, color, price, category, size,stock;
+    String idIn, nameIntent, colorIntent, priceIntent, categoryIntent, sizeIntent, imageIntent,stockIntent;
     Button addToCart;
 
     DataBaseHandler myDb;
@@ -42,6 +43,7 @@ public class MoreCatInfo extends AppCompatActivity {
         color = findViewById(R.id.prod_color);
         price = findViewById(R.id.prod_price);
         category = findViewById(R.id.prod_category);
+        stock = findViewById(R.id.prod_stock);
         size = findViewById(R.id.prod_size);
         addToCart = findViewById(R.id.addToCart);
 
@@ -53,6 +55,7 @@ public class MoreCatInfo extends AppCompatActivity {
         categoryIntent = getDetailsIntent.getStringExtra(CATEGORY);
         sizeIntent = getDetailsIntent.getStringExtra(SIZE);
         imageIntent = getDetailsIntent.getStringExtra(IMAGE);
+        stockIntent = getDetailsIntent.getStringExtra(QUANTITY);
 
         Glide.with(this)
                 .load(imageIntent)
@@ -62,6 +65,7 @@ public class MoreCatInfo extends AppCompatActivity {
         price.setText(priceIntent);
         category.setText(categoryIntent);
         size.setText(sizeIntent);
+        stock.setText(stockIntent);
 
 
         addToCart.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +81,7 @@ public class MoreCatInfo extends AppCompatActivity {
                 bundle.putString("category", categoryIntent);
                 bundle.putString("size", sizeIntent);
                 bundle.putString("image", imageIntent);
+                bundle.putString("quantity", stockIntent);
                 cartBottomSheet.setArguments(bundle);
                 cartBottomSheet.show(getSupportFragmentManager(), "cartBottomSheet");
             }

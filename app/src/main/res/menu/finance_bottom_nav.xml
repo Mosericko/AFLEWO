@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pendingTransactions"
+        android:icon="@drawable/ic_pending"
+        android:title="Pending" />
+    <item
+        android:id="@+id/approvedTransactions"
+        android:icon="@drawable/ic_approved"
+        android:title="Approved" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Profile" />
+
+</menu>

@@ -6,7 +6,7 @@ public class CartDetails {
     String productName;
     String color;
     String price;
-    String category,size;
+    String category,size,totalQuantity;
     String quantity = "1";
 
     public CartDetails() {
@@ -22,7 +22,7 @@ public class CartDetails {
         this.size = size;
     }
 
-    public CartDetails(String id, String productImage, String productName, String color, String price, String category, String size, String quantity) {
+    public CartDetails(String id, String productImage, String productName, String color, String price, String category, String size, String quantity,String totalQuantity) {
         this.id = id;
         this.productImage = productImage;
         this.productName = productName;
@@ -31,6 +31,7 @@ public class CartDetails {
         this.category = category;
         this.size = size;
         this.quantity = quantity;
+        this.totalQuantity = totalQuantity;
     }
 
     public CartDetails(String quantity) {
@@ -99,5 +100,13 @@ public class CartDetails {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(String totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 }

@@ -7,9 +7,9 @@ public class Products {
     String productName;
     String color;
     String price;
-    String category,size;
+    String category, size, quantity;
 
-    public Products(String id, String productImage, String productName, String color, String price, String category, String size) {
+    public Products(String id, String productImage, String productName, String color, String price, String category, String size, String quantity) {
         this.id = id;
         this.productImage = productImage;
         this.productName = productName;
@@ -17,6 +17,7 @@ public class Products {
         this.price = price;
         this.category = category;
         this.size = size;
+        this.quantity = quantity;
     }
 
     public Products() {
@@ -83,5 +84,13 @@ public class Products {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

@@ -36,35 +36,32 @@ public class EventsManager extends AppCompatActivity {
 
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.dashBoard:
-                            selectedFragment = new EventListFragment();
-                            break;
+                switch (item.getItemId()) {
+                    case R.id.dashBoard:
+                        selectedFragment = new EventListFragment();
+                        break;
 
-                        case R.id.addEvents:
-                            selectedFragment = new AddEventFragment();
-                            break;
+                    case R.id.addEvents:
+                        selectedFragment = new AddEventFragment();
+                        break;
 
-                        case R.id.profile:
-                            selectedFragment = new EventProfileFragment();
-                            break;
+                    case R.id.profile:
+                        selectedFragment = new EventProfileFragment();
+                        break;
 
-                        case R.id.archivedEvent:
-                            selectedFragment=new ArchivedEvents();
-                            break;
+                    case R.id.archivedEvent:
+                        selectedFragment=new ArchivedEvents();
+                        break;
 
-                    }
-
-                    assert selectedFragment != null;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-                    return true;
                 }
+
+                assert selectedFragment != null;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                return true;
             };
 
     /*@RequiresApi(api = Build.VERSION_CODES.M)

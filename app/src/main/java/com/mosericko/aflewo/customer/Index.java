@@ -38,39 +38,36 @@ public class Index extends AppCompatActivity {
 
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Fragment selectedFragment = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.home:
-                            selectedFragment = new HomeFragment();
-                            break;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        selectedFragment = new HomeFragment();
+                        break;
 
-                        case R.id.categories:
-                            selectedFragment = new CategoriesFrag();
-                            break;
+                    case R.id.categories:
+                        selectedFragment = new CategoriesFrag();
+                        break;
 
-                        case R.id.cart:
-                            selectedFragment = new CartFragment();
-                            break;
+                    case R.id.cart:
+                        selectedFragment = new CartFragment();
+                        break;
 
-                        case R.id.transactions:
-                            selectedFragment=new TransactionsFrag();
-                            break;
+                    case R.id.transactions:
+                        selectedFragment=new TransactionsFrag();
+                        break;
 
-                        case R.id.customerProfile:
-                            selectedFragment=new ProfileFragment();
-                            break;
+                    case R.id.customerProfile:
+                        selectedFragment=new ProfileFragment();
+                        break;
 
-                    }
-
-                    assert selectedFragment != null;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.customer_container, selectedFragment).commit();
-                    return true;
                 }
+
+                assert selectedFragment != null;
+                getSupportFragmentManager().beginTransaction().replace(R.id.customer_container, selectedFragment).commit();
+                return true;
             };
 
 }

@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.CheckOut"
+        <activity android:name=".customer.OrderMessage"
             android:theme="@style/UserRegistration"/>
+        <activity
+            android:name=".customer.CheckOut"
+            android:theme="@style/UserRegistration" />
         <activity
             android:name=".customer.MoreCatInfo"
             android:theme="@style/DetailsActivity" />
@@ -51,7 +54,9 @@
         <activity
             android:name=".member.EditProfile"
             android:theme="@style/UserRegistration" />
-        <activity android:name=".financemanager.FinanceManager" />
+        <activity
+            android:name=".financemanager.FinanceManager"
+            android:theme="@style/GeneralTheme" />
         <activity
             android:name=".eventsmanager.EventsManager"
             android:theme="@style/UserRegistration" />

@@ -69,7 +69,7 @@ public class CategoriesFrag extends Fragment implements CategoryAdapter.ItemClic
         categList.add(new CategoryDetails(1, "Scarfs", R.drawable.ic_scarf));
         categList.add(new CategoryDetails(2, "T-Shirts", R.drawable.ic_tshirt));
         categList.add(new CategoryDetails(3, "Mugs", R.drawable.ic_mug));
-        categList.add(new CategoryDetails(4, "Hoodies", R.drawable.ic_hoodie));
+        categList.add(new CategoryDetails(4, "Hoodies", R.drawable.ic_sweatshirt));
         categList.add(new CategoryDetails(5, "Hats", R.drawable.ic_hatflat));
         categList.add(new CategoryDetails(6, "Napkins", R.drawable.ic_square_handkerchief));
 

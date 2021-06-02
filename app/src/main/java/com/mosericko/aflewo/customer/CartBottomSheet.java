@@ -31,7 +31,7 @@ public class CartBottomSheet extends BottomSheetDialogFragment {
     int quantity = 1;
     DataBaseHandler myDb;
 
-    String bundleName, bundlePrice, bundleColor, bundleSize, bundleImage, bundleId, bundleCategory;
+    String bundleName, bundlePrice, bundleColor, bundleSize, bundleImage, bundleId, bundleCategory,bundleQuantity;
 
     @Nullable
     @Override
@@ -65,6 +65,9 @@ public class CartBottomSheet extends BottomSheetDialogFragment {
         bundlePrice = bundle.getString("price");
         bundleSize = bundle.getString("size");
         bundleImage = bundle.getString("image");
+        bundleQuantity = bundle.getString("quantity");
+
+        String total = bundleQuantity;
 
         Glide.with(context)
                 .load(bundleImage)
@@ -75,12 +78,12 @@ public class CartBottomSheet extends BottomSheetDialogFragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (quantity < 10) {
+                if (quantity < Integer.parseInt(bundleQuantity)) {
                     quantity++;
                     pieces.setText(String.valueOf(quantity));
 
                 } else {
-                    Toast.makeText(context, "Maximum pieces Reached", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Quantity Cannot Exceed Stock!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -104,7 +107,7 @@ public class CartBottomSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String selectedQuantity = pieces.getText().toString().trim();
-                CartDetails cartDetails = new CartDetails(bundleId, bundleImage, bundleName, bundleColor, bundlePrice, bundleCategory, bundleSize, selectedQuantity);
+                CartDetails cartDetails = new CartDetails(bundleId, bundleImage, bundleName, bundleColor, bundlePrice, bundleCategory, bundleSize, selectedQuantity,total);
 
                 if (myDb.checkIfRowExists(cartDetails)) {
                     Toast.makeText(context, "Item already Added to Cart!", Toast.LENGTH_SHORT).show();

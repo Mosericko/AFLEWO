@@ -64,8 +64,6 @@ public class CartFragment extends Fragment {
             Toast.makeText(context, "Items Cleared Successfully!", Toast.LENGTH_SHORT).show();
         });
 
-
-
         loadCart();
         grandTotal();
 

@@ -55,6 +55,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public static final String PRODUCT_SIZE = "size";
     public static final String PRODUCT_CATEGORY = "category";
     public static final String PRODUCT_QUANTITY = "quantity";
+    public static final String PRODUCT_TOTAL_QUANTITY = "total_quantity";
 
 
     public DataBaseHandler(@Nullable Context context) {
@@ -97,7 +98,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 +PRODUCT_SIZE + " VARCHAR, "
                 +PRODUCT_PRICE + " VARCHAR, "
                 +PRODUCT_IMAGE+ " VARCHAR, "
-                +PRODUCT_QUANTITY+ " INTEGER " + ");";
+                +PRODUCT_QUANTITY+ " INTEGER, "
+                +PRODUCT_TOTAL_QUANTITY + " INTEGER " + ");";
 
         db.execSQL(cartSQL);
 
@@ -194,6 +196,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         cv.put(PRODUCT_PRICE,products.getPrice());
         cv.put(PRODUCT_IMAGE,products.getProductImage());
         cv.put(PRODUCT_QUANTITY,products.getQuantity());
+        cv.put(PRODUCT_TOTAL_QUANTITY,products.getTotalQuantity());
 
         myDb.insert(CART_TABLE,null,cv);
         myDb.close();
@@ -232,6 +235,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 cartDetails.setPrice(cursor.getString(cursor.getColumnIndex(PRODUCT_PRICE)));
                 cartDetails.setProductImage(cursor.getString(cursor.getColumnIndex(PRODUCT_IMAGE)));
                 cartDetails.setQuantity(cursor.getString(cursor.getColumnIndex(PRODUCT_QUANTITY)));
+                cartDetails.setTotalQuantity(cursor.getString(cursor.getColumnIndex(PRODUCT_TOTAL_QUANTITY)));
 
                 cartList.add(cartDetails);
             }while (cursor.moveToNext());

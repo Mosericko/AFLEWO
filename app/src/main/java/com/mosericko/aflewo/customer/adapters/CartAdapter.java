@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,6 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.cartCategory.setText(cartDetails.getCategory());
         holder.cartPrice.setText(cartDetails.getPrice());
         holder.noOfItems.setText(cartDetails.getQuantity());
+
 
     }
 
@@ -138,11 +140,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             increment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (counter < 10) {
+                    if (counter < Integer.parseInt(cart.getTotalQuantity())) {
                         counter++;
                         quantity.setText(String.valueOf(counter));
                     } else {
-                        Toast.makeText(context, "Maximum pieces Reached", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Pieces Cannot Exceed Stock!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -161,17 +163,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 }
             });
 
-            saveChanges.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String selectedQuantity = quantity.getText().toString().trim();
-                    CartDetails cartDetails = new CartDetails(selectedQuantity);
+            saveChanges.setOnClickListener(v -> {
+                String selectedQuantity = quantity.getText().toString().trim();
+                CartDetails cartDetails = new CartDetails(selectedQuantity);
 
-                    myDb.updateQuantity(cartDetails, id);
-                    Toast.makeText(context, "Quantity Edited ✔✔", Toast.LENGTH_SHORT).show();
-                    alertDialog.dismiss();
-//                    CartFragment.loadCart();
-                }
+                myDb.updateQuantity(cartDetails, id);
+                Toast.makeText(context, "Quantity Edited ✔✔", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+//
             });
 
 
@@ -187,8 +186,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             myDb.deleteOneItem(id);
             productsArrayList.remove(position);
             notifyItemRemoved(position);
+
         }
 
 
     }
+
 }

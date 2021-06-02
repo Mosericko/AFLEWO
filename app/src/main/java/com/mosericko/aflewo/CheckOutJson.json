@@ -1,0 +1,35 @@
+[
+  {
+    "category": "Hats",
+    "color": "Black",
+    "id": "10",
+    "price": "200",
+    "productImage": "http://android.officialm-devs.com/aflewoapp/SignActivity/products/images/25150363_1620523250.jpeg",
+    "productName": "Plain Hat",
+    "quantity": "15",
+    "size": "Medium [M]",
+    "totalQuantity": "15"
+  },
+  {
+    "category": "Hoodies",
+    "color": "Black",
+    "id": "17",
+    "price": "500",
+    "productImage": "http://android.officialm-devs.com/aflewoapp/SignActivity/products/images/714863493_1622415456.jpeg",
+    "productName": "Be Great",
+    "quantity": "30",
+    "size": "Small [S]",
+    "totalQuantity": "30"
+  },
+  {
+    "category": "Scarfs",
+    "color": "grey",
+    "id": "12",
+    "price": "450",
+    "productImage": "http://android.officialm-devs.com/aflewoapp/SignActivity/products/images/379786818_1620523720.jpeg",
+    "productName": "Mid-size Thick Scarf",
+    "quantity": "3",
+    "size": "Medium [M]",
+    "totalQuantity": "15"
+  }
+]

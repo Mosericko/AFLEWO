@@ -67,8 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/coachTitle"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/edosz"
+                    android:fontFamily="@font/arima_madurai_extrabold"
                     android:text="KEVIN"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold" />

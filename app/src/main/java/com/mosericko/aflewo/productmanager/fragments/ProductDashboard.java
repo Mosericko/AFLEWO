@@ -94,9 +94,10 @@ public class ProductDashboard extends Fragment implements ProductListAdapter.onI
                         String price = productDetails.getString("price");
                         String category = productDetails.getString("category");
                         String size = productDetails.getString("size");
+                        String quantity = productDetails.getString("quantity");
 
 
-                        prodArray.add(new Products(id, image, name, color, price, category, size));
+                        prodArray.add(new Products(id, image, name, color, price, category, size,quantity));
                     }
 
                     proAdapter = new ProductListAdapter(prodArray, context);

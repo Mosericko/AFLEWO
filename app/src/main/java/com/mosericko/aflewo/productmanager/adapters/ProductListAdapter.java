@@ -51,10 +51,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         Products product = productList.get(position);
 
-        RequestOptions reqOptions = new RequestOptions().placeholder(R.drawable.ic_undraw_empty_cart);
+//        RequestOptions reqOptions = new RequestOptions().placeholder(R.drawable.ic_undraw_empty_cart);
         Glide.with(context)
                 .load(product.getProductImage())
-                .apply(reqOptions)
+//                .apply(reqOptions)
                 .into(holder.imageOfProd);
         holder.nameOfProd.setText(product.getProductName());
 

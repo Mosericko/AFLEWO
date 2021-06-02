@@ -16,5 +16,6 @@ public class URLs {
     public static final String URL_ADD_PRODUCTS = ROOT_URL + "addProducts";
     public static final String URL_FETCH_PRODUCTS = ROOT_URL + "fetchProducts";
     public static final String URL_FETCH_CATEGORIES = ROOT_URL + "fetchCategories";
+    public static final String URL_PLACE_ORDER = ROOT_URL + "placeOrder";
 }
 //192.168.43.96
