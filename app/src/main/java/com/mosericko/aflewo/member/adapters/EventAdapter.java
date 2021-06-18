@@ -18,8 +18,9 @@ import java.util.ArrayList;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventVH> {
 
-    private ArrayList<Events> userEvents;
-    private Context context;
+    ArrayList<Events> userEvents;
+    Context context;
+    EventClickListener eventClickListener;
 
 
     public EventAdapter(ArrayList<Events> userEvents, Context context) {
@@ -27,17 +28,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventVH> {
         this.context = context;
     }
 
+    public void setOnItemClickListener(EventClickListener event) {
+        eventClickListener = event;
+    }
+
     @NonNull
     @Override
     public EventVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.user_event_cardview,viewGroup,false);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.user_event_cardview, viewGroup, false);
         return new EventVH(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EventVH eventVH, int i) {
-        Events userEventList=userEvents.get(i);
+        Events userEventList = userEvents.get(i);
         Glide.with(context)
                 .load(userEventList.getEventImage())
                 .into(eventVH.event_poster);
@@ -48,13 +53,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventVH> {
 
     }
 
+    public interface EventClickListener {
+        void onEventClick(int position);
+    }
+
     @Override
     public int getItemCount() {
         return userEvents.size();
     }
 
-
-    public static class EventVH extends RecyclerView.ViewHolder{
+    public class EventVH extends RecyclerView.ViewHolder {
 
         TextView event_name, event_time, event_location;
         ImageView event_poster;
@@ -63,10 +71,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventVH> {
         public EventVH(@NonNull View itemView) {
             super(itemView);
 
-            event_name= itemView.findViewById(R.id.eventTitle);
-            event_time= itemView.findViewById(R.id.event_time);
-            event_location= itemView.findViewById(R.id.location);
-            event_poster= itemView.findViewById(R.id.eventPoster);
+            event_name = itemView.findViewById(R.id.eventTitle);
+            event_time = itemView.findViewById(R.id.event_time);
+            event_location = itemView.findViewById(R.id.location);
+            event_poster = itemView.findViewById(R.id.eventPoster);
+
+            itemView.setOnClickListener(v -> {
+                if (eventClickListener != null) {
+                    int position = getAdapterPosition();
+
+                    if (position != RecyclerView.NO_POSITION) {
+
+                        eventClickListener.onEventClick(position);
+                    }
+                }
+            });
         }
     }
 }

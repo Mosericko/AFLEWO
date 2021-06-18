@@ -1,4 +1,4 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.mosericko.aflewo.R;
+import com.mosericko.aflewo.customer.activities.Index;
+import com.mosericko.aflewo.customer.classes.CartDetails;
 import com.mosericko.aflewo.database.DataBaseHandler;
 
 public class CartBottomSheet extends BottomSheetDialogFragment {

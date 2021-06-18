@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,25 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.CategoryDetails;
-import com.mosericko.aflewo.customer.CategoryInfo;
-import com.mosericko.aflewo.customer.CategoryItems;
-import com.mosericko.aflewo.customer.ProductDetails;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.classes.CategoryDetails;
+import com.mosericko.aflewo.customer.activities.CategoryItems;
 import com.mosericko.aflewo.customer.adapters.CategoryAdapter;
-import com.mosericko.aflewo.helperclasses.URLs;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CategoriesFrag extends Fragment implements CategoryAdapter.ItemClickListener {
 

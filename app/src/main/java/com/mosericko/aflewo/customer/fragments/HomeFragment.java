@@ -22,17 +22,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.ProductDetails;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.activities.ProductDetails;
+import com.mosericko.aflewo.customer.classes.Products;
 import com.mosericko.aflewo.customer.adapters.ProductAdapter;
 import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
-import com.mosericko.aflewo.eventsmanager.Events;
-import com.mosericko.aflewo.eventsmanager.adapters.EventListAdapter;
 import com.mosericko.aflewo.helperclasses.URLs;
 import com.mosericko.aflewo.member.User;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

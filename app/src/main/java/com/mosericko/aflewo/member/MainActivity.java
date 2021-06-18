@@ -21,6 +21,7 @@ import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.Events;
 import com.mosericko.aflewo.helperclasses.URLs;
+import com.mosericko.aflewo.member.activities.EventInformation;
 import com.mosericko.aflewo.member.adapters.EventAdapter;
 
 import org.json.JSONArray;
@@ -29,9 +30,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EventAdapter.EventClickListener {
     RelativeLayout account;
-    TextView firstInitial,secondInitial;
+    TextView firstInitial, secondInitial;
     RecyclerView event_recycler;
     ArrayList<Events> userEventsArrayList = new ArrayList<>();
     EventAdapter eventAdapter;
@@ -66,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
         nameOne = String.valueOf(user.getFirstname());
         nameTwo = String.valueOf(user.getLastname());
 
-        firstInitial=findViewById(R.id.firstInitial);
+        firstInitial = findViewById(R.id.firstInitial);
         firstInitial.setText(String.valueOf(nameOne.charAt(0)));
 
-        secondInitial=findViewById(R.id.secondInitial);
+        secondInitial = findViewById(R.id.secondInitial);
         secondInitial.setText(String.valueOf(nameTwo.charAt(0)));
     }
 
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             eventAdapter = new EventAdapter(userEventsArrayList, MainActivity.this);
                             event_recycler.setAdapter(eventAdapter);
+                            eventAdapter.setOnItemClickListener(MainActivity.this);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -112,5 +114,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestQueue.add(jsonArrayRequest);
+    }
+
+    @Override
+    public void onEventClick(int position) {
+        Intent intent = new Intent(MainActivity.this, EventInformation.class);
+
+        startActivity(intent);
     }
 }

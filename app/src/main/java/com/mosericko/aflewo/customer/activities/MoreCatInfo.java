@@ -1,4 +1,4 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
+import com.mosericko.aflewo.customer.fragments.CartBottomSheet;
 import com.mosericko.aflewo.database.DataBaseHandler;
 
 import static com.mosericko.aflewo.customer.fragments.HomeFragment.CATEGORY;

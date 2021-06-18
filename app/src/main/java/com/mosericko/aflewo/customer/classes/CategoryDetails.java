@@ -1,4 +1,4 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.classes;
 
 public class CategoryDetails {
     int id;

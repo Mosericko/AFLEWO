@@ -22,9 +22,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/arima_madurai_extrabold"
+                android:fontFamily="@font/lora_bold"
                 android:text="Home"
-                android:textColor="#FF5722"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -92,8 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#FBE9E7"
-                    android:fontFamily="@font/lora_bold"
+                    android:fontFamily="@font/arima_madurai_extrabold"
                     android:text="Upcoming Events"
                     android:textAllCaps="true"
                     android:textColor="@color/black"

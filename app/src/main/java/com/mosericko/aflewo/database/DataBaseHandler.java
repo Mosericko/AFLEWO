@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.mosericko.aflewo.customer.CartDetails;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.classes.CartDetails;
 import com.mosericko.aflewo.eventsmanager.Events;
 import com.mosericko.aflewo.member.User;
 

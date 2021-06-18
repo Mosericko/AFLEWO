@@ -30,14 +30,23 @@
                     app:tint="@color/colorPrimary" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/lora_bold"
                     android:includeFontPadding="false"
-                    android:text="COLOR :"
+                    android:text="Color"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/muli_extrabold"
+                    android:text=":"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -45,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lora_bold"
                     android:text="Black"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -67,14 +76,23 @@
                     app:tint="@color/colorPrimary" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/lora_bold"
                     android:includeFontPadding="false"
-                    android:text="CATEGORY :"
+                    android:text="Category"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/muli_extrabold"
+                    android:text=":"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -82,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lora_bold"
                     android:text="Hoodie"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -102,14 +120,23 @@
                     app:tint="@color/colorPrimary" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/lora_bold"
                     android:includeFontPadding="false"
-                    android:text="SIZE :"
+                    android:text="Size"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/muli_extrabold"
+                    android:text=":"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -117,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lora_bold"
                     android:text="Extra Small [XS]"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -137,14 +164,23 @@
                     app:tint="@color/colorPrimary" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/lora_bold"
                     android:includeFontPadding="false"
-                    android:text="STOCK :"
+                    android:text="Stock"
                     android:textColor="@color/black"
                     android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/muli_extrabold"
+                    android:text=":"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -152,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lora_bold"
                     android:text="25"
                     android:textColor="@color/black"
                      />
@@ -173,12 +209,21 @@
                     app:tint="@color/colorPrimary" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/lora_bold"
-                    android:text="KES :"
+                    android:text="Ksh"
                     android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/muli_extrabold"
+                    android:text=":"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
 
                 <TextView
@@ -186,7 +231,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/lato_bold"
+                    android:fontFamily="@font/lora_bold"
                     android:text="2500"
                     android:textColor="@color/black"
                      />

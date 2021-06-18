@@ -17,11 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.CartDetails;
-import com.mosericko.aflewo.customer.CheckOut;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.classes.CartDetails;
+import com.mosericko.aflewo.customer.activities.CheckOut;
 import com.mosericko.aflewo.customer.adapters.CartAdapter;
 import com.mosericko.aflewo.database.DataBaseHandler;
 
@@ -39,6 +39,7 @@ public class CartFragment extends Fragment {
     DataBaseHandler myDb;
     TextView totalPrice;
     Button checkOut;
+
 
     @Nullable
     @Override
@@ -58,6 +59,7 @@ public class CartFragment extends Fragment {
         totalPrice = view.findViewById(R.id.totalPrice);
         checkOut = view.findViewById(R.id.checkOut);
 
+
         clearAll.setOnClickListener(v -> {
             myDb.deleteCartItems();
             clearAllItems();
@@ -66,9 +68,6 @@ public class CartFragment extends Fragment {
 
         loadCart();
         grandTotal();
-
-
-
     }
 
     public void loadCart() {
@@ -132,6 +131,14 @@ public class CartFragment extends Fragment {
 
         }
     }
-
-
+    
 }
+//SwipeRefreshLayout swipeRefreshLayout;
+//swipeRefreshLayout = view.findViewById(R.id.cartRefresh);
+/*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().detach(CartFragment.this).attach(CartFragment.this).commit();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });*/

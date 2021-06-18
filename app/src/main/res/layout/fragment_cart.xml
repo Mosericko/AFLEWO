@@ -34,6 +34,9 @@
         android:visibility="visible" />
 
 
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecycler"
         android:layout_width="match_parent"
@@ -42,6 +45,7 @@
         android:layout_below="@+id/cartLabel"
         android:layout_margin="2dp"
         tools:listitem="@layout/cart_cardview" />
+
 
     <RelativeLayout
         android:id="@+id/hiddenLayout"
@@ -116,4 +120,5 @@
 
 
     </RelativeLayout>
+
 </RelativeLayout>

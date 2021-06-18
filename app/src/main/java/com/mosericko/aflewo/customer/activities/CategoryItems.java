@@ -1,4 +1,4 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,18 +11,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.adapters.CatItemsAdapter;
+import com.mosericko.aflewo.customer.classes.CategoryInfo;
 import com.mosericko.aflewo.helperclasses.URLs;
-import com.mosericko.aflewo.productmanager.adapters.ProductListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

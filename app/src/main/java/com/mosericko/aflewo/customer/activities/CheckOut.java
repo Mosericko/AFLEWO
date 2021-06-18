@@ -1,16 +1,15 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.activities;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,33 +21,23 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.adapters.GoodsListAdapter;
+import com.mosericko.aflewo.customer.classes.CartDetails;
 import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
-import com.mosericko.aflewo.loginregistration.MoreDetails;
-import com.mosericko.aflewo.loginregistration.UserLogin;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
-
-import static com.mosericko.aflewo.customer.fragments.CategoriesFrag.EXTRA_CATEGORY;
 
 public class CheckOut extends AppCompatActivity {
     private static final String TAG = "log value";
@@ -58,7 +47,6 @@ public class CheckOut extends AppCompatActivity {
     ArrayList<CartDetails> goodsArray = new ArrayList<>();
     TextView totalAmount, completeOrder;
     EditText mpesaCode;
-    TextInputLayout mcode;
     String total;
     LinearLayout addMore;
     Button placeOrder;
@@ -105,6 +93,7 @@ public class CheckOut extends AppCompatActivity {
         completeOrder = view.findViewById(R.id.completeOrder);
 
         AlertDialog alertDialog = mpesaDialog.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
 
         completeOrder.setOnClickListener(v -> {

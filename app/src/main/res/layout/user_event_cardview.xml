@@ -28,17 +28,18 @@
                 android:id="@+id/eventTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/muli_extrabold"
+                android:fontFamily="@font/arima_madurai_extrabold"
                 android:maxLength="20"
+                android:textColor="@color/black"
                 android:text="Africa Let's worship"
-                android:textColor="@color/c3"
+                android:textStyle="bold"
                 android:textSize="17sp" />
 
             <View
                 android:layout_width="40dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/AliExpress" />
+                android:background="@drawable/ui_gradient" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_clock" />
+                    android:src="@drawable/ic_clock"
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/event_time"
@@ -58,7 +60,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:text="05:00:00"
-                    android:textColor="@color/c3"
+                    android:fontFamily="@font/lora_bold"
+                    android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -72,7 +75,8 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_location" />
+                    android:src="@drawable/ic_location"
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/location"
@@ -81,7 +85,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:text="Kenya"
-                    android:textColor="@color/c3"
+                    android:fontFamily="@font/lora_bold"
+                    android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -96,7 +101,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-            android:src="@drawable/ic_arrow" />
+            android:src="@drawable/ic_arrow"
+            app:tint="@color/colorPrimary" />
 
 
     </RelativeLayout>

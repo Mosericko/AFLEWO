@@ -11,9 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.classes.Products;
 
 import java.util.ArrayList;
 

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.Index;
+import com.mosericko.aflewo.customer.activities.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;

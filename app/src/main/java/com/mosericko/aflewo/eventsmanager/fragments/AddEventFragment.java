@@ -184,7 +184,7 @@ public class AddEventFragment extends Fragment {
     private void nextFrag() {
         //calling the eventList Fragment
         EventListFragment eventListFragment = new EventListFragment();
-        FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, eventListFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -375,7 +375,7 @@ public class AddEventFragment extends Fragment {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     //nextFrag();
                     startActivity(new Intent(getContext(),EventsManager.class));
-                    Objects.requireNonNull(getActivity()).finish();
+                    requireActivity().finish();
                 } else {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                 }

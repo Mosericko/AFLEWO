@@ -1,7 +1,6 @@
 package com.mosericko.aflewo.helperclasses;
 
 public class URLs {
-
     //private static final String ROOT_URL = "http://192.168.0.105/aflewoapp/SignActivity/Operations.php?signactivitycall=";
     private static final String ROOT_URL = "http://android.officialm-devs.com/aflewoapp/SignActivity/Operations.php?signactivitycall=";
     public static final String URL_REGISTER = ROOT_URL + "signup";
@@ -17,5 +16,9 @@ public class URLs {
     public static final String URL_FETCH_PRODUCTS = ROOT_URL + "fetchProducts";
     public static final String URL_FETCH_CATEGORIES = ROOT_URL + "fetchCategories";
     public static final String URL_PLACE_ORDER = ROOT_URL + "placeOrder";
+    public static final String SEND_FEEDBACK = ROOT_URL + "feedback";
+    public static final String URL_GET_FEEDBACK = ROOT_URL + "getFeedBack";
+    public static final String FETCH_ORDERS = ROOT_URL + "orders";
+    public static final String URL_FETCH_ORDER_DETAILS = ROOT_URL + "fetchOrderDetails";
 }
 //192.168.43.96

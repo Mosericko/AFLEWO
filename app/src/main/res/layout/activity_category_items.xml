@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".customer.CategoryItems">
+    tools:context=".customer.activities.CategoryItems">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/shadegrey"
         android:padding="10dp">
 
         <TextView
@@ -19,8 +20,9 @@
             android:layout_marginStart="4dp"
             android:fontFamily="@font/edosz"
             android:text="Scarfs"
+            android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>

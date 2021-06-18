@@ -1,4 +1,4 @@
-package com.mosericko.aflewo.customer;
+package com.mosericko.aflewo.customer.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

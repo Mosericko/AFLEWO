@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:padding="10dp">
 
         <ImageView
@@ -39,10 +39,10 @@
             android:layout_toEndOf="@id/cart_Image">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_bold"
-                android:text="KES -"
+                android:fontFamily="@font/arima_madurai_extrabold"
+                android:text="KES"
                 android:textColor="#6C63FF"
                 android:textStyle="bold" />
 
@@ -70,10 +70,10 @@
 
             <TextView
                 android:id="@+id/itemQuantity"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_bold"
-                android:text="SIZE -"
+                android:fontFamily="@font/arima_madurai_extrabold"
+                android:text="SIZE"
                 android:textColor="#6C63FF"
                 android:textStyle="bold" />
 
@@ -99,10 +99,10 @@
 
             <TextView
                 android:id="@+id/itemColor"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/lora_bold"
-                android:text="COLOR -"
+                android:fontFamily="@font/arima_madurai_extrabold"
+                android:text="COLOR"
                 android:textColor="#6C63FF"
                 android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/lora_bold"
+                android:fontFamily="@font/arima_madurai_extrabold"
                 android:text="Black"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -125,11 +125,17 @@
             android:layout_toEndOf="@id/cart_Image"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_label_24"
-                app:tint="#F3E5F5" />
+            <LinearLayout
+                android:id="@+id/catT"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_baseline_label_24"
+                    app:tint="#F3E5F5" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/categoryOfItem"
@@ -149,13 +155,14 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@+id/cart_Image"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@color/Silver" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cutLine"
+            android:layout_marginTop="5dp"
             android:layout_alignParentBottom="true">
 
             <LinearLayout

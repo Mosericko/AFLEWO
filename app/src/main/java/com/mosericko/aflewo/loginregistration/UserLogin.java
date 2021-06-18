@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.mosericko.aflewo.customer.Index;
+import com.mosericko.aflewo.customer.activities.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class UserLogin extends AppCompatActivity {
     EditText email, password;
     Button login;
-    TextView forgotPassword,register;
+    TextView forgotPassword, register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class UserLogin extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserLogin.this,UserRegistration.class));
+                startActivity(new Intent(UserLogin.this, UserRegistration.class));
             }
         });
     }

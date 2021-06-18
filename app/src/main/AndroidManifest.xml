@@ -12,28 +12,42 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".customer.OrderMessage"
-            android:theme="@style/UserRegistration"/>
+        <activity android:name=".member.activities.EventInformation"></activity>
         <activity
-            android:name=".customer.CheckOut"
+            android:name=".customer.activities.OrderDetails"
             android:theme="@style/UserRegistration" />
         <activity
-            android:name=".customer.MoreCatInfo"
+            android:name=".customer.activities.FAQs"
+            android:theme="@style/UserRegistration" />
+        <activity
+            android:name=".customer.activities.FeedBack"
+            android:theme="@style/UserRegistration" />
+        <activity
+            android:name=".customer.activities.OrderHistory"
+            android:theme="@style/UserRegistration" />
+        <activity
+            android:name=".customer.activities.OrderMessage"
+            android:theme="@style/UserRegistration" />
+        <activity
+            android:name=".customer.activities.CheckOut"
+            android:theme="@style/UserRegistration" />
+        <activity
+            android:name=".customer.activities.MoreCatInfo"
             android:theme="@style/DetailsActivity" />
         <activity
-            android:name=".customer.CategoryItems"
+            android:name=".customer.activities.CategoryItems"
             android:theme="@style/UserRegistration" />
         <activity
             android:name=".productmanager.EditProduct"
             android:theme="@style/GeneralTheme" />
         <activity
-            android:name=".customer.ProductDetails"
+            android:name=".customer.activities.ProductDetails"
             android:theme="@style/DetailsActivity" />
         <activity
             android:name=".productmanager.ProductManager"
             android:theme="@style/GeneralTheme" />
         <activity
-            android:name=".customer.Index"
+            android:name=".customer.activities.Index"
             android:theme="@style/GeneralTheme" />
         <activity
             android:name=".eventsmanager.EditEvent"

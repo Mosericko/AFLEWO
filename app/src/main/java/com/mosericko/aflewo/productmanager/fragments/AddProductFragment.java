@@ -173,7 +173,7 @@ public class AddProductFragment extends Fragment {
     private void sendDetailsToDb() {
 
         int selectedCategory= category.getCheckedRadioButtonId();
-        selectedCat = Objects.requireNonNull(getView()).findViewById(selectedCategory);
+        selectedCat = requireView().findViewById(selectedCategory);
 
         int selected_size = size.getCheckedRadioButtonId();
         selectedSize= getView().findViewById(selected_size);
@@ -265,7 +265,7 @@ public class AddProductFragment extends Fragment {
 
                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(context, ProductManager.class));
-                Objects.requireNonNull(getActivity()).finish();
+                requireActivity().finish();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

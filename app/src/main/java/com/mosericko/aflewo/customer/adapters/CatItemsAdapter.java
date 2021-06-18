@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.CategoryInfo;
+import com.mosericko.aflewo.customer.classes.CategoryInfo;
 
 import java.util.ArrayList;
 

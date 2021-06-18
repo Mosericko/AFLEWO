@@ -2,31 +2,30 @@ package com.mosericko.aflewo.customer.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.CartDetails;
-import com.mosericko.aflewo.customer.Index;
-import com.mosericko.aflewo.customer.Products;
+import com.mosericko.aflewo.customer.classes.CartDetails;
 import com.mosericko.aflewo.customer.fragments.CartFragment;
 import com.mosericko.aflewo.database.DataBaseHandler;
+import com.mosericko.aflewo.eventsmanager.fragments.EventListFragment;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
@@ -134,6 +133,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             saveChanges = view.findViewById(R.id.saveBtn);
 
             final AlertDialog alertDialog = quantityDialog.create();
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             alertDialog.show();
 
             //increment and decrement
@@ -169,6 +169,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 myDb.updateQuantity(cartDetails, id);
                 Toast.makeText(context, "Quantity Edited ✔✔", Toast.LENGTH_SHORT).show();
+                /*AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Fragment myFragment = new CartFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.cart, myFragment).addToBackStack(null).commit();*/
                 alertDialog.dismiss();
 //
             });
@@ -190,6 +193,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         }
 
 
+
     }
+
 
 }
