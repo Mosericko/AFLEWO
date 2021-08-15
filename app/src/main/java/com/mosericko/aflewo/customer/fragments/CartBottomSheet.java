@@ -57,7 +57,7 @@ public class CartBottomSheet extends BottomSheetDialogFragment {
         pieces = view.findViewById(R.id.modalQuantity);
 
 
-        //Daamn!! I like this Game
+
         Bundle bundle = getArguments();
         assert bundle != null;
         bundleId = bundle.getString("id");

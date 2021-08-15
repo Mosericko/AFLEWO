@@ -1,6 +1,5 @@
 package com.mosericko.aflewo.eventsmanager.fragments;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -29,13 +28,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
@@ -64,7 +60,8 @@ public class AddEventFragment extends Fragment {
     byte[] byteArray;
     String imageString;
     //variable declaration
-    private int galleryReqCode = 1, cameraReqCode = 2;
+    private final int galleryReqCode = 1;
+    private final int cameraReqCode = 2;
     private Uri fileTrace;
 
     @Nullable
@@ -117,22 +114,14 @@ public class AddEventFragment extends Fragment {
         eventDate.setInputType(InputType.TYPE_NULL);
 
         //timePicker dialog
-        startTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
-                // time picker dialog
-                startEvent = new TimePickerDialog(context,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                startTime.setText(sHour + ":" + sMinute);
-                            }
-                        }, hour, minutes, true);
-                startEvent.show();
-            }
+        startTime.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minutes = calendar.get(Calendar.MINUTE);
+            // time picker dialog
+            startEvent = new TimePickerDialog(context,
+                    (tp, sHour, sMinute) -> startTime.setText(sHour + ":" + sMinute), hour, minutes, true);
+            startEvent.show();
         });
 
 
@@ -156,39 +145,22 @@ public class AddEventFragment extends Fragment {
         });
 
         //DatePicker Dialog
-        eventDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int month = calendar.get(Calendar.MONTH);
-                int year = calendar.get(Calendar.YEAR);
-                // date picker dialog
-                setDate = new DatePickerDialog(context,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                eventDate.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
-                            }
-                        }, year, month, day);
-                //grey out previous dates from the calender
-                setDate.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
-                setDate.show();
-            }
-
+        eventDate.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+            // date picker dialog
+            setDate = new DatePickerDialog(context,
+                    (view, year1, monthOfYear, dayOfMonth) -> eventDate.setText(year1 + "/" + (monthOfYear + 1) + "/" + dayOfMonth), year, month, day);
+            //grey out previous dates from the calender
+            setDate.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
+            setDate.show();
         });
 
 
     }
 
-    private void nextFrag() {
-        //calling the eventList Fragment
-        EventListFragment eventListFragment = new EventListFragment();
-        FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, eventListFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
 
     private void showOptionsDialog() {
         AlertDialog.Builder optionsDialog = new AlertDialog.Builder(context);
@@ -374,7 +346,7 @@ public class AddEventFragment extends Fragment {
                 if (!jsonObject.getBoolean("error")) {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     //nextFrag();
-                    startActivity(new Intent(getContext(),EventsManager.class));
+                    startActivity(new Intent(getContext(), EventsManager.class));
                     requireActivity().finish();
                 } else {
                     Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();

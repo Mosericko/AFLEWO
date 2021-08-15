@@ -1,10 +1,12 @@
 package com.mosericko.aflewo.eventsmanager.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +22,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.database.DataBaseHandler;
+import com.mosericko.aflewo.eventsmanager.Auditions;
 import com.mosericko.aflewo.eventsmanager.adapters.EventListAdapter;
 import com.mosericko.aflewo.eventsmanager.Events;
 import com.mosericko.aflewo.helperclasses.URLs;
@@ -33,6 +36,7 @@ import java.util.ArrayList;
 public class EventListFragment extends Fragment {
 
     RecyclerView eventsRecycler;
+    LinearLayout auditions;
     ArrayList<Events> eventsArrayList = new ArrayList<>();
     EventListAdapter eventListAdapter;
     private DataBaseHandler myDb;
@@ -50,6 +54,11 @@ public class EventListFragment extends Fragment {
         this.context = getContext();
 
         eventsRecycler = view.findViewById(R.id.eventRecyclerView);
+        auditions = view.findViewById(R.id.auditions);
+
+        auditions.setOnClickListener(v -> {
+            startActivity(new Intent(context, Auditions.class));
+        });
 
         listedEvents();
 

@@ -28,7 +28,7 @@
             android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/archiveImage"
             android:ellipsize="end"
-            android:fontFamily="@font/arima_madurai_extrabold"
+            android:fontFamily="@font/changa_semibold"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
@@ -297,14 +297,16 @@
             <LinearLayout
                 android:id="@+id/archive_edit_event"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_border"
+                android:padding="5dp">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="24dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_edit"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/colorPrimary" />-->
 
                 <TextView
 
@@ -313,6 +315,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/lora_bold"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:text="Edit"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -333,21 +336,25 @@
             <LinearLayout
                 android:id="@+id/unArchiveEvent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/red_border"
+                android:padding="5dp">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="24dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:rotation="180"
                     app:tint="@color/colorPrimary"
-                    android:src="@drawable/archive_svg" />
+                    android:src="@drawable/archive_svg" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/lora_bold"
                     android:text="Unarchive"
                     android:textColor="@color/black"

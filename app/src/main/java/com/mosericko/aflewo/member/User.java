@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String phonenumber;
     private String usertype;
+    private String status;
 
     public User(int id, String firstname, String lastname, String gender, String email, String phonenumber, String usertype) {
         this.id = id;
@@ -25,6 +26,17 @@ public class User {
         this.gender = gender;
         /*this.email = email;
         this.phonenumber = phonenumber;*/
+    }
+
+    public User(int id, String firstname, String lastname, String gender, String email, String phonenumber, String usertype, String status) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.email = email;
+        this.phonenumber = phonenumber;
+        this.usertype = usertype;
+        this.status = status;
     }
 
     public User() {
@@ -46,6 +58,9 @@ public class User {
         return gender;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
     public String getEmail() {
         return email;

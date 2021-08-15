@@ -30,6 +30,16 @@ public class Events {
         this.startTime = startTime;
     }
 
+    public Events(String id, String eventImage, String eventName, String eventVenue, String eventDate, String startTime, String endTime) {
+        this.id = id;
+        this.eventImage = eventImage;
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+        this.eventDate = eventDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public String getId() {
         return id;
     }

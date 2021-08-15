@@ -1,29 +1,25 @@
 package com.mosericko.aflewo.member;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.loginregistration.SignActivityPrompt;
 
-import java.util.Objects;
-
 public class UserProfile extends AppCompatActivity {
     TextView email, phone, gender;
     TextView firstName, lastName, firstInitial, secondInitial, backText, editText;
     ImageView editProfile, backArrow;
-    LinearLayout logOut;
+    Button logOut;
     String nameOne, nameTwo;
     private int id = PrefManager.getInstance(this).UserID();
 
@@ -33,13 +29,13 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         logOut = findViewById(R.id.logOut);
-        editProfile = findViewById(R.id.editProfile);
+        /*editProfile = findViewById(R.id.editProfile);
         backArrow = findViewById(R.id.backArrow);
         backText = findViewById(R.id.backText);
-        editText = findViewById(R.id.editText);
+        editText = findViewById(R.id.editText);*/
 
 
-        backArrow.setOnClickListener(new View.OnClickListener() {
+       /* backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfile.this, MainActivity.class);
@@ -62,13 +58,13 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(new Intent(UserProfile.this, EditProfile.class));
             }
         });
-
-        editText.setOnClickListener(new View.OnClickListener() {
+*/
+        /*editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(UserProfile.this, EditProfile.class));
             }
-        });
+        });*/
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +83,7 @@ public class UserProfile extends AppCompatActivity {
 
         DataBaseHandler myDb = new DataBaseHandler(this);
         User user = myDb.getUser(id);
-        //User user=PrefManager.getUser();
+
         nameOne = String.valueOf(user.getFirstname());
         nameTwo = String.valueOf(user.getLastname());
 

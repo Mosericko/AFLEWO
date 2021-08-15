@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.classes.Products;
+import com.mosericko.aflewo.financemanager.activities.AdminFeedBack;
 import com.mosericko.aflewo.helperclasses.URLs;
 import com.mosericko.aflewo.productmanager.EditProduct;
 import com.mosericko.aflewo.productmanager.adapters.ProductListAdapter;
@@ -36,10 +38,10 @@ public class ProductDashboard extends Fragment implements ProductListAdapter.onI
 
     RecyclerView prodRecyclerView;
     Context context;
-    ArrayList<Products>prodArray = new ArrayList<>();
+    public static final int NUM_COLUMNS = 2;
     ProductListAdapter proAdapter;
-
-    public static final int NUM_COLUMNS= 2;
+    ArrayList<Products> prodArray = new ArrayList<>();
+    TextView messages;
 
     //Key Constants for Intents to be sent
     public static final String ID_ = "id";
@@ -50,25 +52,31 @@ public class ProductDashboard extends Fragment implements ProductListAdapter.onI
     public static final String SIZE_ = "size";
     public static final String IMAGE_ = "image";
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_product_dashboard,container,false);
+        return inflater.inflate(R.layout.fragment_product_dashboard, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        context= this.getContext();
+        context = this.getContext();
 
         prodRecyclerView = view.findViewById(R.id.prodRecyclerView);
+        messages = view.findViewById(R.id.messages);
+
+        messages.setOnClickListener(v -> {
+            Intent intent = new Intent(context, AdminFeedBack.class);
+            intent.putExtra("name", "Product Manager");
+            startActivity(intent);
+        });
 
         listAllProducts();
     }
 
     private void listAllProducts() {
-        StaggeredGridLayoutManager staggeredRecycler= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager staggeredRecycler = new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         prodRecyclerView.setLayoutManager(staggeredRecycler);
         //volley library
         RequestQueue requestQueue;
@@ -95,7 +103,7 @@ public class ProductDashboard extends Fragment implements ProductListAdapter.onI
                         String quantity = productDetails.getString("quantity");
 
 
-                        prodArray.add(new Products(id, image, name, color, price, category, size,quantity));
+                        prodArray.add(new Products(id, image, name, color, price, category, size, quantity));
                     }
 
                     proAdapter = new ProductListAdapter(prodArray, context);
@@ -121,13 +129,13 @@ public class ProductDashboard extends Fragment implements ProductListAdapter.onI
         Intent detailIntent = new Intent(getContext(), EditProduct.class);
         Products clickedProduct = prodArray.get(position);
 
-        detailIntent.putExtra(ID_,clickedProduct.getId());
-        detailIntent.putExtra(NAME_,clickedProduct.getProductName());
-        detailIntent.putExtra(COLOR_,clickedProduct.getColor());
-        detailIntent.putExtra(PRICE_,clickedProduct.getPrice());
-        detailIntent.putExtra(CATEGORY_,clickedProduct.getCategory());
-        detailIntent.putExtra(SIZE_,clickedProduct.getSize());
-        detailIntent.putExtra(IMAGE_,clickedProduct.getProductImage());
+        detailIntent.putExtra(ID_, clickedProduct.getId());
+        detailIntent.putExtra(NAME_, clickedProduct.getProductName());
+        detailIntent.putExtra(COLOR_, clickedProduct.getColor());
+        detailIntent.putExtra(PRICE_, clickedProduct.getPrice());
+        detailIntent.putExtra(CATEGORY_, clickedProduct.getCategory());
+        detailIntent.putExtra(SIZE_, clickedProduct.getSize());
+        detailIntent.putExtra(IMAGE_, clickedProduct.getProductImage());
 
         startActivity(detailIntent);
 

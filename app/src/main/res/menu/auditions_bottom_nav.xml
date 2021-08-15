@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/au_dashboard"
+        android:icon="@drawable/ic_category"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/addAuditions"
+        android:icon="@drawable/ic_event_add"
+        android:title="Set Audition" />
+
+    <item
+        android:id="@+id/attendants"
+        android:icon="@drawable/ic_notes"
+        android:title="Participants" />
+
+</menu>

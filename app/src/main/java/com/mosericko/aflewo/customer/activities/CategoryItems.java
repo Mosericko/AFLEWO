@@ -1,15 +1,15 @@
 package com.mosericko.aflewo.customer.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -47,7 +47,7 @@ public class CategoryItems extends AppCompatActivity implements CatItemsAdapter.
     CatItemsAdapter catItemsAdapter;
     String itemType;
     //data from api
-    String id, image, nameProduct, colorProduct, price, category, size,quantity;
+    String id, image, nameProduct, colorProduct, price, category, size, quantity;
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -102,7 +102,7 @@ public class CategoryItems extends AppCompatActivity implements CatItemsAdapter.
                         size = obj.getString("size");
                         quantity = obj.getString("quantity");
 
-                        details.add(new CategoryInfo(id, image, nameProduct, colorProduct, price, category, size,quantity));
+                        details.add(new CategoryInfo(id, image, nameProduct, colorProduct, price, category, size, quantity));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -41,19 +41,9 @@ public class MoreDetails extends AppCompatActivity {
         gender = findViewById(R.id.genderChoice);
         userType = findViewById(R.id.userCategory);
 
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerUser();
-            }
-        });
+        createAccount.setOnClickListener(view -> registerUser());
 
-        user_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MoreDetails.this, UserLogin.class));
-            }
-        });
+        user_login.setOnClickListener(v -> startActivity(new Intent(MoreDetails.this, UserLogin.class)));
 
     }
 

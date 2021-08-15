@@ -7,8 +7,8 @@
         android:title="Pending" />
     <item
         android:id="@+id/approvedTransactions"
-        android:icon="@drawable/ic_approved"
-        android:title="Approved" />
+        android:icon="@drawable/ic_transactions"
+        android:title="Transactions" />
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_baseline_account_box_24"

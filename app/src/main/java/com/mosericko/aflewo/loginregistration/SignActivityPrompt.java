@@ -6,17 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.activities.Index;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
+import com.mosericko.aflewo.participants.Participants;
 import com.mosericko.aflewo.productmanager.ProductManager;
 import com.mosericko.aflewo.member.MainActivity;
 
 public class SignActivityPrompt extends AppCompatActivity {
     Button register, login;
+    LinearLayout participants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,8 @@ public class SignActivityPrompt extends AppCompatActivity {
 
         register = findViewById(R.id.signUp);
         login = findViewById(R.id.signIn);
+       // participants = findViewById(R.id.participant);
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +44,9 @@ public class SignActivityPrompt extends AppCompatActivity {
                 startActivity(new Intent(SignActivityPrompt.this, UserLogin.class));
             }
         });
+       /* participants.setOnClickListener(v -> {
+            startActivity(new Intent(SignActivityPrompt.this, Participants.class));
+        });*/
 
         if (PrefManager.getInstance(this).isLoggedIn()) {
             this.finish();
@@ -58,7 +66,7 @@ public class SignActivityPrompt extends AppCompatActivity {
                     finish();
                     break;
                 case "4":
-                    Intent intent = new Intent(SignActivityPrompt.this,Index.class);
+                    Intent intent = new Intent(SignActivityPrompt.this, Index.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();

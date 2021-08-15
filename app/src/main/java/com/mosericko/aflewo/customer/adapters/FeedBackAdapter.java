@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.classes.FeedBackData;
+import com.mosericko.aflewo.eventsmanager.adapters.OnClickInterface;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -19,10 +20,15 @@ import java.util.ArrayList;
 public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.FeedBackVH> {
     Context context;
     ArrayList<FeedBackData> feedBackList;
+    OnClickInterface onClickInterface;
 
     public FeedBackAdapter(Context context, ArrayList<FeedBackData> feedBackList) {
         this.context = context;
         this.feedBackList = feedBackList;
+    }
+
+    public void setOnItemClickListener(OnClickInterface onItemClickListener) {
+        this.onClickInterface = onItemClickListener;
     }
 
     @NonNull
@@ -50,7 +56,7 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.FeedBa
         return feedBackList.size();
     }
 
-    public static class FeedBackVH extends RecyclerView.ViewHolder {
+    public class FeedBackVH extends RecyclerView.ViewHolder {
         TextView title, messageDate, messageTime, feedbackMessage;
 
         public FeedBackVH(@NonNull @NotNull View itemView) {
@@ -59,6 +65,15 @@ public class FeedBackAdapter extends RecyclerView.Adapter<FeedBackAdapter.FeedBa
             messageDate = itemView.findViewById(R.id.message_date);
             messageTime = itemView.findViewById(R.id.message_time);
             feedbackMessage = itemView.findViewById(R.id.actual_message);
+
+            itemView.setOnClickListener(v -> {
+                if (onClickInterface != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        onClickInterface.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

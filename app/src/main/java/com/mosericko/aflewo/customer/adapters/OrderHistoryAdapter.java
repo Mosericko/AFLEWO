@@ -1,6 +1,7 @@
 package com.mosericko.aflewo.customer.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     Context context;
     ArrayList<Orders> ordersArrayList;
-
+    //create interface object
     private OrderClickListener orderClickListener;
 
     public OrderHistoryAdapter(Context context, ArrayList<Orders> ordersArrayList) {
@@ -48,6 +49,10 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         holder.orderTime.setText(orders.getOrderTime());
         holder.amountPaid.setText(orders.getAmountPaid());
         holder.orderStatus.setText(orders.getOrderStatus());
+        if (orders.getOrderStatus().equals("pending")) {
+            holder.orderStatus.setTextColor(Color.RED);
+        }
+
 
     }
 
@@ -89,6 +94,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                     }
                 }
             });
+
+
         }
     }
 }

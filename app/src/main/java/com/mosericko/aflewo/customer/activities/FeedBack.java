@@ -1,18 +1,11 @@
 package com.mosericko.aflewo.customer.activities;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,18 +16,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mosericko.aflewo.R;
-import com.mosericko.aflewo.customer.adapters.CatItemsAdapter;
 import com.mosericko.aflewo.customer.adapters.FeedBackAdapter;
-import com.mosericko.aflewo.customer.classes.CategoryInfo;
 import com.mosericko.aflewo.customer.classes.FeedBackData;
 import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
+import com.mosericko.aflewo.eventsmanager.adapters.OnClickInterface;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
 import com.mosericko.aflewo.member.User;
@@ -50,7 +47,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class FeedBack extends AppCompatActivity {
+public class FeedBack extends AppCompatActivity implements OnClickInterface {
 
     private static final String TAG = "logcat";
     Button sendMessage;
@@ -113,9 +110,10 @@ public class FeedBack extends AppCompatActivity {
                         String message = obj.getString("message");
                         String time = obj.getString("messagetime");
                         String date = obj.getString("messagedate");
+                        String reply = obj.getString("reply");
 
 
-                        myFeedBack.add(new FeedBackData(title, message, time, date));
+                        myFeedBack.add(new FeedBackData(title, message, time, date, reply));
 
 
                     } catch (JSONException e) {
@@ -124,12 +122,13 @@ public class FeedBack extends AppCompatActivity {
 
                     feedBackAdapter = new FeedBackAdapter(this, myFeedBack);
                     feedBackRV.setAdapter(feedBackAdapter);
+                    feedBackAdapter.setOnItemClickListener(FeedBack.this);
                 }
 
-                if (myFeedBack.size()>0){
+                if (myFeedBack.size() > 0) {
                     bgl.setVisibility(View.GONE);
                     sendFeedBackBtn.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     bgl.setVisibility(View.VISIBLE);
                     sendFeedBackBtn.setVisibility(View.GONE);
                 }
@@ -146,7 +145,6 @@ public class FeedBack extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
-
 
 
     }
@@ -211,6 +209,16 @@ public class FeedBack extends AppCompatActivity {
 
         FeedBackAsync sendToDB = new FeedBackAsync(receiver, title, message, messageTime, messageDate, sender);
         sendToDB.execute();
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, ReplyMessage.class);
+        FeedBackData feedBackData = myFeedBack.get(position);
+        intent.putExtra("reply", feedBackData.getReply());
+
+        startActivity(intent);
 
     }
 

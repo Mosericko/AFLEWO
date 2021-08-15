@@ -1,11 +1,22 @@
 package com.mosericko.aflewo.customer.classes;
 
 public class Orders {
-    String orderNo,mpesaCode,orderDate,orderTime,amountPaid,orderStatus;
+    String orderId, orderNo, mpesaCode, cust_id, orderDate, orderTime, amountPaid, orderStatus;
 
     public Orders(String orderNo, String mpesaCode, String orderDate, String orderTime, String amountPaid, String orderStatus) {
         this.orderNo = orderNo;
         this.mpesaCode = mpesaCode;
+        this.orderDate = orderDate;
+        this.orderTime = orderTime;
+        this.amountPaid = amountPaid;
+        this.orderStatus = orderStatus;
+    }
+
+    public Orders(String orderId, String orderNo, String mpesaCode, String cust_id, String orderDate, String orderTime, String amountPaid, String orderStatus) {
+        this.orderId = orderId;
+        this.orderNo = orderNo;
+        this.mpesaCode = mpesaCode;
+        this.cust_id = cust_id;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
         this.amountPaid = amountPaid;
@@ -34,5 +45,13 @@ public class Orders {
 
     public String getOrderStatus() {
         return orderStatus;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public String getCust_id() {
+        return cust_id;
     }
 }

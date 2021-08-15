@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.classes.OrderItems;
+import com.mosericko.aflewo.database.PrefManager;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -45,6 +47,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
         holder.category.setText(orderItems.getCategory());
         holder.size.setText(orderItems.getSize());
         holder.quantity.setText(orderItems.getQuantity());
+        holder.stock.setText(orderItems.getStock());
     }
 
     @Override
@@ -53,7 +56,8 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     }
 
     public class OrderDetailsVH extends RecyclerView.ViewHolder {
-        TextView name,color,price,category,size,quantity;
+        TextView name,color,price,category,size,quantity,stock;
+        LinearLayout stockLay;
 
         public OrderDetailsVH(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -63,6 +67,13 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             category = itemView.findViewById(R.id.category);
             size = itemView.findViewById(R.id.sizeOfProduct);
             quantity = itemView.findViewById(R.id.itemQuanta);
+            stock = itemView.findViewById(R.id.stock);
+            stockLay = itemView.findViewById(R.id.stockLay);
+
+            if (PrefManager.getInstance(context).UserType().equals("4")){
+                stockLay.setVisibility(View.GONE);
+            }
+
 
 
         }

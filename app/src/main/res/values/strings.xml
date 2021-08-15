@@ -4,6 +4,7 @@
     <string name="upload_image">Upload Image..</string>
     <string name="event_details">Event Details</string>
     <string name="lorem20">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vitae maxime quidem qui. Iusto voluptatem, tenetur quod ipsa numquam cumque?</string>
+    <string name="attend">Would you like to attend this audition?\nBook Your Spot below</string>
     <string-array name="categories">
 
         <item>Handkerchief</item>

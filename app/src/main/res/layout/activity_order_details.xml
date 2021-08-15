@@ -362,7 +362,7 @@
                 android:id="@+id/itemsBought"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/order_items" />
+                tools:listitm="@layout/order_items" />
 
             <LinearLayout
                 android:id="@+id/shopMore"

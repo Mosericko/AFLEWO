@@ -28,7 +28,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView name, color, price, category, size,quantity;
     String idIn, nameIntent, colorIntent, priceIntent, categoryIntent, sizeIntent, imageIntent,stockIntent;
     Button addToCart;
-    ImageView cartBackground;
+
 
     DataBaseHandler myDb;
 

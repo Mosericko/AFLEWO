@@ -34,6 +34,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     private ArrayList<Events> eventList;
     private Context context;
 
+
     //variables for intent
     public static final String EXTRA_ID = "eventId";
     public static final String EXTRA_IMAGE = "imageUrl";

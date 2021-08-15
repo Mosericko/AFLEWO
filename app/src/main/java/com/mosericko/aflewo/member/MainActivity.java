@@ -1,14 +1,15 @@
 package com.mosericko.aflewo.member;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,7 +21,10 @@ import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.Events;
+import com.mosericko.aflewo.eventsmanager.adapters.AuditionsAdapter;
+import com.mosericko.aflewo.eventsmanager.adapters.OnClickInterface;
 import com.mosericko.aflewo.helperclasses.URLs;
+import com.mosericko.aflewo.member.activities.AuditionDetails;
 import com.mosericko.aflewo.member.activities.EventInformation;
 import com.mosericko.aflewo.member.adapters.EventAdapter;
 
@@ -30,14 +34,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements EventAdapter.EventClickListener {
+public class MainActivity extends AppCompatActivity implements EventAdapter.EventClickListener, OnClickInterface {
     RelativeLayout account;
     TextView firstInitial, secondInitial;
-    RecyclerView event_recycler;
+    private final int id = PrefManager.getInstance(this).UserID();
     ArrayList<Events> userEventsArrayList = new ArrayList<>();
     EventAdapter eventAdapter;
     String nameOne, nameTwo;
-    private int id = PrefManager.getInstance(this).UserID();
+    RecyclerView event_recycler, auditionRecycler;
+    LinearLayout topLayout, auditionLayout,messages;
+    ArrayList<Events> eventsArrayList = new ArrayList<>();
+    AuditionsAdapter eventListAdapter;
+    String status = PrefManager.getInstance(this).status();
 
 
     @Override
@@ -48,6 +56,16 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
 
         account = findViewById(R.id.accountIcon);
         event_recycler = findViewById(R.id.event_recyclerview);
+        auditionRecycler = findViewById(R.id.auditionRecyclerView);
+        topLayout = findViewById(R.id.topLayout);
+        auditionLayout = findViewById(R.id.auditionLayout);
+        messages = findViewById(R.id.messages);
+
+        if (status.equals("1")) {
+            topLayout.setVisibility(View.GONE);
+        } else {
+            auditionLayout.setVisibility(View.GONE);
+        }
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +73,13 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
                 startActivity(new Intent(MainActivity.this, UserProfile.class));
             }
         });
+        messages.setOnClickListener(v -> {
+            startActivity(new Intent(this,Messages.class));
+        });
 
         userEventView();
         accountInitials();
+        listedEvents();
     }
 
     private void accountInitials() {
@@ -76,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
 
     private void userEventView() {
         event_recycler.setHasFixedSize(true);
-        event_recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        event_recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         RequestQueue requestQueue;
         requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLs.URL_FETCH_EVENTS, null,
@@ -96,8 +118,11 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
                                 String eventName = eventInfo.getString("event_name");
                                 String startTime = eventInfo.getString("start_time");
                                 String eventVenue = eventInfo.getString("event_venue");
+                                String event_theme = eventInfo.getString("event_theme");
+                                String endTime = eventInfo.getString("end_time");
+                                String date = eventInfo.getString("event_date");
 
-                                userEventsArrayList.add(new Events(id, eventImage, eventName, startTime, eventVenue));
+                                userEventsArrayList.add(new Events(id, eventImage, eventName, eventVenue, event_theme, date, startTime, endTime));
                             }
                             eventAdapter = new EventAdapter(userEventsArrayList, MainActivity.this);
                             event_recycler.setAdapter(eventAdapter);
@@ -106,12 +131,46 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
                             e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                }, Throwable::printStackTrace);
+
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void listedEvents() {
+        auditionRecycler.setHasFixedSize(true);
+        auditionRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, URLs.URL_FETCH_AUDITION, null,
+                response -> {
+
+                    try {
+                        //loop through the event details array
+                        for (int i = 0; i < response.length(); i++) {
+
+                            //get the current Json Object
+                            JSONObject eventDetails = response.getJSONObject(i);
+
+                            String id = eventDetails.getString("id");
+                            String eventName = eventDetails.getString("title");
+                            String eventVenue = eventDetails.getString("venue");
+                            String startTime = eventDetails.getString("start_time");
+                            String endTime = eventDetails.getString("end_time");
+                            String eventDate = eventDetails.getString("date");
+                            String eventImage = eventDetails.getString("poster");
+
+                            eventsArrayList.add(new Events(id, eventImage, eventName, eventVenue, eventDate, startTime, endTime));
+
+                        }
+
+                        eventListAdapter = new AuditionsAdapter(MainActivity.this, eventsArrayList);
+                        auditionRecycler.setAdapter(eventListAdapter);
+                        eventListAdapter.setOnClickInterface(MainActivity.this);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }, Throwable::printStackTrace);
 
         requestQueue.add(jsonArrayRequest);
     }
@@ -119,7 +178,31 @@ public class MainActivity extends AppCompatActivity implements EventAdapter.Even
     @Override
     public void onEventClick(int position) {
         Intent intent = new Intent(MainActivity.this, EventInformation.class);
+        Events events = userEventsArrayList.get(position);
+        intent.putExtra("image", events.getEventImage());
+        intent.putExtra("title", events.getEventName());
+        intent.putExtra("theme", events.getEventTheme());
+        intent.putExtra("startTime", events.getStartTime());
+        intent.putExtra("endTime", events.getEndTime());
+        intent.putExtra("date", events.getEventDate());
+        intent.putExtra("location", events.getEventVenue());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //see more details about the upcoming audition
+        Intent intent = new Intent(MainActivity.this, AuditionDetails.class);
+        Events events = eventsArrayList.get(position);
+        intent.putExtra("image", events.getEventImage());
+        intent.putExtra("title", events.getEventName());
+        intent.putExtra("startTime", events.getStartTime());
+        intent.putExtra("endTime", events.getEndTime());
+        intent.putExtra("date", events.getEventDate());
+        intent.putExtra("location", events.getEventVenue());
 
         startActivity(intent);
+
+
     }
 }

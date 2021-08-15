@@ -1,28 +1,27 @@
 package com.mosericko.aflewo.loginregistration;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
+import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.activities.Index;
+import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.database.PrefManager;
 import com.mosericko.aflewo.eventsmanager.EventsManager;
 import com.mosericko.aflewo.financemanager.FinanceManager;
-import com.mosericko.aflewo.member.MainActivity;
-import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
+import com.mosericko.aflewo.member.MainActivity;
 import com.mosericko.aflewo.member.User;
-import com.mosericko.aflewo.database.DataBaseHandler;
 import com.mosericko.aflewo.productmanager.ProductManager;
 
 import org.json.JSONException;
@@ -47,12 +46,8 @@ public class UserLogin extends AppCompatActivity {
         register = findViewById(R.id.user_register);
 
         login.setOnClickListener(v -> userLogin());
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(UserLogin.this, UserRegistration.class));
-            }
-        });
+        register.setOnClickListener(v -> startActivity(new Intent(UserLogin.this, UserRegistration.class)));
+        forgotPassword.setOnClickListener(v -> startActivity(new Intent(this, ForgotPassword.class)));
     }
 
     private void userLogin() {
@@ -150,7 +145,8 @@ public class UserLogin extends AppCompatActivity {
                             userJson.getString("gender"),
                             userJson.getString("email"),
                             userJson.getString("phonenumber"),
-                            userJson.getString("usertype")
+                            userJson.getString("usertype"),
+                            userJson.getString("activated")
 
                     );
 

@@ -20,5 +20,19 @@ public class URLs {
     public static final String URL_GET_FEEDBACK = ROOT_URL + "getFeedBack";
     public static final String FETCH_ORDERS = ROOT_URL + "orders";
     public static final String URL_FETCH_ORDER_DETAILS = ROOT_URL + "fetchOrderDetails";
+    public static final String URL_FETCH_ALL_ORDERS = ROOT_URL + "fetchAllOrders";
+    public static final String URL_APPROVE_ORDERS = ROOT_URL + "approveOrder";
+    public static final String URL_GEN_PDF = ROOT_URL + "generateReceipt";
+    public static final String URL_FETCH_LINK = ROOT_URL + "fetchReceiptUrl";
+    public static final String URL_ARCHIVE_PRODUCT = ROOT_URL + "archiveProduct";
+    public static final String URL_ADD_AUDITION = ROOT_URL + "addAudition";
+    public static final String URL_FETCH_AUDITION = ROOT_URL + "fetchAudition";
+    public static final String BOOK = ROOT_URL + "booking";
+    public static final String APPROVE_PAY = ROOT_URL + "approvePayments";
+    public static final String APPROVE_AUD = ROOT_URL + "approveAudition";
+    public static final String DISAPPROVE = ROOT_URL + "disapprove";
+    public static final String URL_FETCH_ALL_APP = ROOT_URL + "fetchApprovedOrders";
+    public static final String REC_PASS = ROOT_URL + "recoverPassword";
+
 }
 //192.168.43.96

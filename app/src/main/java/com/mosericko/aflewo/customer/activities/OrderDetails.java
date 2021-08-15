@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +23,10 @@ import com.google.gson.JsonObject;
 import com.mosericko.aflewo.R;
 import com.mosericko.aflewo.customer.adapters.OrderDetailsAdapter;
 import com.mosericko.aflewo.customer.classes.OrderItems;
+import com.mosericko.aflewo.customer.fragments.ReceiptBottomSheet;
+import com.mosericko.aflewo.financemanager.FinanceManager;
+import com.mosericko.aflewo.financemanager.activities.FinanceOrderDetails;
+import com.mosericko.aflewo.helperclasses.RequestHandler;
 import com.mosericko.aflewo.helperclasses.URLs;
 
 import org.json.JSONArray;
@@ -76,11 +82,29 @@ public class OrderDetails extends AppCompatActivity {
         amountPaid.setText(amountPaidIn);
         orderStatus.setText(orderStatusIn);
 
+
         if (!orderStatusIn.equals("approved")){
             downloadReceipt.setVisibility(View.GONE);
+            orderStatus.setTextColor(Color.RED);
         }
 
+        downloadReceipt.setOnClickListener(v->{
+            genPdf();
+
+            ReceiptBottomSheet receiptBottomSheet = new ReceiptBottomSheet();
+            Bundle bundle = new Bundle();
+            bundle.putString("orderNo", orderNoIn);
+            receiptBottomSheet.setArguments(bundle);
+            receiptBottomSheet.show(getSupportFragmentManager(),"receiptBottomSheet");
+        });
+
         listItems();
+    }
+
+    private void genPdf() {
+
+        ReceiptAsync receiptAsync = new ReceiptAsync(orderNoIn);
+        receiptAsync.execute();
     }
 
     private void listItems() {
@@ -128,5 +152,26 @@ public class OrderDetails extends AppCompatActivity {
         };
 
         requestQueue.add(stringRequest);
+    }
+
+    public class ReceiptAsync extends AsyncTask<Void, Void, String> {
+
+        String orderNum;
+
+        public ReceiptAsync(String orderNum) {
+            this.orderNum = orderNum;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            RequestHandler requestHandler = new RequestHandler();
+
+            HashMap<String, String> params = new HashMap<>();
+            params.put("order_num", orderNoIn);
+
+            return requestHandler.sendPostRequest(URLs.URL_GEN_PDF, params);
+        }
+
     }
 }

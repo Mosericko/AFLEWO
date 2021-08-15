@@ -28,13 +28,13 @@
             android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/event_image"
             android:ellipsize="end"
-            android:fontFamily="@font/arima_madurai_extrabold"
+            android:fontFamily="@font/poppins_bold"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Event Name"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -210,22 +210,24 @@
             <LinearLayout
                 android:id="@+id/edit_event"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_border"
+                android:padding="5dp">
 
-                <ImageView
+                <!--<ImageView
                     android:layout_width="24dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_edit"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/colorPrimary" />-->
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
-                    android:fontFamily="@font/lora_bold"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/muli_extrabold"
                     android:text="Edit"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -238,25 +240,30 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/bar_gradient" />
 
             <LinearLayout
                 android:id="@+id/archive_event"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
 
-                <ImageView
+                android:background="@drawable/red_border"
+                android:padding="5dp">
+
+                <!--<ImageView
                     android:layout_width="24dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:src="@drawable/archive_svg"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/colorPrimary" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/lora_bold"
                     android:text="Archive"
                     android:textColor="@color/black"
